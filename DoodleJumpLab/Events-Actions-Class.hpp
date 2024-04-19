@@ -16,6 +16,8 @@ public:
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			obj1.move(0.3 * direction, 0);
 		}
+
+
 	}
 	
 };

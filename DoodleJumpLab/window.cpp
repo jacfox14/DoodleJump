@@ -12,7 +12,7 @@ sf::RenderWindow& Window::getWindow()
 
 void Window::createWindow()
 {
-    mWindow.create(sf::VideoMode(600, 1000), "Doodle jump!");
+    mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
     //mWindow.setFramerateLimit(60);
     sf::View camera;
     sf::Vector2f center(500.0, 500.0);
