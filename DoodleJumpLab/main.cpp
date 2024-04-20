@@ -16,16 +16,11 @@ int main() {
 	sf::Event e;
 	Actions a;
 
-	sf::Vector2f size(50.0, 200.0);
+	sf::Vector2f size(50.0, 100.0);
 	sf::Vector2f pos(500, 500);
 	sf::Color color = sf::Color::Green;
 
 	Player p1(size, pos, color);
-
-	sf::Vector2f size1(50.0, 10.0);
-	sf::Vector2f pos1(50, 500);
-	sf::Color color1 = sf::Color::Green;
-	Platform plat1(size1, pos1, color1);
 
 	bool rising = false;
 	bool jump = false;
@@ -61,6 +56,12 @@ int main() {
 				
 				jump = false;
 				riseCounter = 0;
+
+				if (p1.getPosition().y < 100) {
+
+					pg.MovePLatformsUp();
+
+				}
 			}
 
 		}
@@ -68,13 +69,7 @@ int main() {
 			p1.move(0, 0.1);
 		}
 
-
-		// does the ball collide with the p2Paddle?
-		if (p1.getGlobalBounds().intersects(plat1.getGlobalBounds()))
-		{
-			// yes, a collision was detected. let's move the ball the opposite direction
-			plat1.move(0, 15);
-		}
+		
 
 		a.inBounds(window, p1);
 

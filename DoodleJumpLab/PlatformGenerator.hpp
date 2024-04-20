@@ -58,22 +58,34 @@ public:
 
 	void MovePLatformsUp() {
 
-		
-
 		for (int i = 0; i < 6; i++) {
 
-			mPlatforms[i].move(0, 200);
+			mPlatforms[i].move(0, 100);
 
-			if (mPlatforms[i].getPosition().y > 1000) {
-				mPlatforms.pop_back();
+			if (mPlatforms[i].getPosition().y > 800) {
+				popFront(mPlatforms);
+				mPlatformCount--;
 				mPlatforms.push_back(generateNew());
+				
+			}
+			if (mPlatformCount < 6) {
+				while (mPlatformCount <= 6)
+				{
+					mPlatforms.push_back(generateNew());
+					mPlatformCount++;
+				}
+				
 			}
 
 		}
-
-
-
 		
+	}
+
+	void popFront(vector<Platform> platforms) {
+
+		platforms.front() = platforms.back();
+		platforms.pop_back();
+
 	}
 
 private:
