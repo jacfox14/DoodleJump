@@ -8,11 +8,11 @@ class Player : public sf::RectangleShape{
 
 public:
 
-	Player(const sf::Vector2f& size, sf::Vector2f& pos, const sf::Color& color) : sf::RectangleShape(size)
+	Player(const sf::Vector2f& size, sf::Vector2f& pos, const sf::Color& color, sf::Texture texture) : sf::RectangleShape(size)
 	{
 		this->setPosition(pos);
 		this->setFillColor(color);
-        //this->setTexture(texture);
+		this->setTexture(&texture);
         this->size = size;
         velocity = 0.0;
 	}
@@ -24,7 +24,7 @@ public:
 
 private:
 	double velocity;
-   // sf::Texture texture;
+   sf::Texture texture;
     sf::Vector2f size;
     sf::Vector2f pos;
 };

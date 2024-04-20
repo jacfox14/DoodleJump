@@ -17,12 +17,11 @@ int main() {
 	Actions a;
 
 	sf::Vector2f size(50.0, 100.0);
+	sf::Texture t;
 	sf::Vector2f pos(500, 500);
-	sf::Texture t1;
-	t1.loadFromFile("Platform.png");
-	sf::Color color = sf::Color::Green;
-
-	Player p1(size, pos, color, t1);
+	sf::Color color(sf::Color::Red);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
 
 	bool rising = false;
 	bool jump = false;
