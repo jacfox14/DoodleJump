@@ -25,6 +25,8 @@ int main() {
 	bool rising = false;
 	bool jump = false;
 	int riseCounter = 0;
+	bool movePlat = false;
+	int movePlatCounter = 0;
 
 	while (window.isOpen()) {
 
@@ -57,9 +59,9 @@ int main() {
 				jump = false;
 				riseCounter = 0;
 
-				if (p1.getPosition().y < 100) {
+				if (p1.getPosition().y < 400) {
 
-					pg.MovePLatformsUp();
+					movePlat = true;
 
 				}
 			}
@@ -67,6 +69,19 @@ int main() {
 		}
 		else {
 			p1.move(0, 0.1);
+		}
+
+		if (movePlat)
+		{
+			pg.MovePlatformsUp();
+			pg.CheckForNewPLatforms();
+			movePlatCounter++;
+
+			if (movePlatCounter > 300) {
+				movePlat = false;
+				movePlatCounter = 0;
+			}
+
 		}
 
 		

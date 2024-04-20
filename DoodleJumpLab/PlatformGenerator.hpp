@@ -56,25 +56,34 @@ public:
 		return collides;
 	}
 
-	void MovePLatformsUp() {
+	void MovePlatformsUp() {
+		
+		for (int i = 0; i < 6; i++) {
+			mPlatforms[i].move(0, 1);
+		}
+
+	}
+
+
+	void CheckForNewPLatforms() {
 
 		for (int i = 0; i < 6; i++) {
 
-			mPlatforms[i].move(0, 300);
+			//mPlatforms[i].move(0, 300);
 
 			if (mPlatforms[i].getPosition().y > 800) {
 				mPlatforms.erase(mPlatforms.begin());
 				mPlatforms.push_back(generateNew());
 				
 			}
-			if (mPlatformCount < 6) {
+			/*if (mPlatformCount < 6) {
 				while (mPlatformCount < 6)
 				{
 					mPlatforms.push_back(generateNew());
 					mPlatformCount++;
 				}
 				
-			}
+			}*/
 
 		}
 		
