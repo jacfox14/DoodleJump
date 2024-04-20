@@ -18,7 +18,11 @@ int main() {
 	Alien alien;
 
 	sf::Vector2f size(50.0, 100.0);
+	sf::Texture t;
 	sf::Vector2f pos(500, 500);
+	sf::Color color(sf::Color::Red);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
 	sf::Color color = sf::Color::Blue;
 
 	Player p1(size, pos, color);
