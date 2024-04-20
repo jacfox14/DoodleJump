@@ -15,7 +15,6 @@ int main() {
 	Events move;
 	sf::Event e;
 	Actions a;
-	Alien alien;
 
 	sf::Vector2f size(50.0, 100.0);
 	sf::Texture t;
@@ -24,13 +23,6 @@ int main() {
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 	sf::Color color = sf::Color::Blue;
-
-	Player p1(size, pos, color);
-
-	sf::Color bulColor = sf::Color::Red;
-	sf::Vector2f bulletPosition(1030,1030);
-
-	Bullet bullet(bulletPosition, bulColor);
 
 	bool rising = false;
 	bool jump = false;
@@ -133,7 +125,13 @@ int main() {
 
 		// end the current frame
 		window.display();
-
+		if (p1.getPosition().y > 1000) {
+			window.clear();
+			text.setCharacterSize(50);
+			text.setString("Game Over");
+			text.setFont(myFont);
+			window.draw(text);
+		}
 
 	}
 
