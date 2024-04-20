@@ -18,9 +18,11 @@ int main() {
 
 	sf::Vector2f size(50.0, 100.0);
 	sf::Vector2f pos(500, 500);
+	sf::Texture t1;
+	t1.loadFromFile("Platform.png");
 	sf::Color color = sf::Color::Green;
 
-	Player p1(size, pos, color);
+	Player p1(size, pos, color, t1);
 
 	bool rising = false;
 	bool jump = false;
@@ -39,7 +41,7 @@ int main() {
 		}
 
 		move.movementInput(window, p1);
-
+		move.shoot(bul);
 		int direction = 1;
 
 
