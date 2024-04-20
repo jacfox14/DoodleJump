@@ -56,6 +56,26 @@ public:
 		return collides;
 	}
 
+	void MovePLatformsUp() {
+
+		
+
+		for (int i = 0; i < 6; i++) {
+
+			mPlatforms[i].move(0, 200);
+
+			if (mPlatforms[i].getPosition().y > 1000) {
+				mPlatforms.pop_back();
+				mPlatforms.push_back(generateNew());
+			}
+
+		}
+
+
+
+		
+	}
+
 private:
 	int mPlatformCount;
 	vector<Platform> mPlatforms;

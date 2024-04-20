@@ -28,6 +28,7 @@ int main() {
 	Platform plat1(size1, pos1, color1);
 
 	bool rising = false;
+	bool jump = false;
 	int riseCounter = 0;
 
 	while (window.isOpen()) {
@@ -45,15 +46,20 @@ int main() {
 		int direction = 1;
 
 
-		pg.checkPlatformCollsion(p1);
+		rising = pg.checkPlatformCollsion(p1);
 
-		if (rising) {
+		if (rising || jump) {
+
+			if (riseCounter == 0) {
+				jump = true;
+			}
 
 			riseCounter++;
 			p1.move(0, -0.5);
 
 			if (riseCounter > 600) {
-				rising = false;
+				
+				jump = false;
 				riseCounter = 0;
 			}
 
