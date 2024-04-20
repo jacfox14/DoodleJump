@@ -15,6 +15,8 @@ int main() {
 	Events move;
 	sf::Event e;
 	Actions a;
+	Alien alien;
+	Bullet bullet;
 
 	sf::Vector2f size(50.0, 100.0);
 	sf::Texture t;
