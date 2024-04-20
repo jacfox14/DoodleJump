@@ -144,7 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.hpp" />
+    <ClInclude Include="bullet.hpp" />
     <ClInclude Include="Events-Actions-Class.hpp" />
+    <ClInclude Include="gravity.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="window.hpp" />
