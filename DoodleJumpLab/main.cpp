@@ -41,7 +41,7 @@ int main() {
 		}
 
 		move.movementInput(window, p1);
-		move.shoot(bul);
+
 		int direction = 1;
 
 
