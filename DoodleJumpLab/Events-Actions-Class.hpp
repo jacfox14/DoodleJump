@@ -1,5 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "Player.hpp"
+#include "bullet.hpp"
 class Events
 {
 private:
@@ -17,7 +18,12 @@ public:
 			obj1.move(0.3 * direction, 0);
 		}
 
+		
 
+	}
+
+	void shoot(Bullet& obj1) {//user presses space bar, sprite is changed to face upward, bullet sprite is loaded and moves upwards	
+			obj1.move(0, -0.8);
 	}
 	
 };
@@ -39,7 +45,7 @@ public:
 			window.clear();
 		}
 	}
-	bool collisionDetection(sf::RenderWindow& window, sf::Sprite& obj1, sf::Sprite & obj2) {
+	bool collisionDetection(sf::RenderWindow& window, sf::RectangleShape& obj1, sf::CircleShape& obj2) {
 		bool success = false;
 		if (obj1.getGlobalBounds().intersects(obj2.getGlobalBounds())) {
 			success = true;

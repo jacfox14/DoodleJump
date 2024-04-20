@@ -1,5 +1,6 @@
 #pragma once
 #include "Platform.hpp"
+#include "Alien.hpp"
 #include <vector>
 #include <math.h>
 using std::vector;
@@ -7,6 +8,8 @@ using std::vector;
 
 class PlatformGenerator {
 public:
+	
+
 	PlatformGenerator():mPlatformCount(0) {
 		for (int i = 1; i <= 6; i++) {
 			sf::Vector2f size(100.0f, 20.0f);
@@ -27,11 +30,15 @@ public:
 			mPlatforms.push_back(*newP);
 			mPlatformCount++;
 		}
+
+
+		
 	}
 	void drawPlatforms(sf::RenderWindow& window) {
 		for (int i = 0; i < mPlatformCount; i++) {
 			window.draw(mPlatforms[i]);
 		}
+
 	}
 
 	Platform& generateNew() {
@@ -61,6 +68,7 @@ public:
 		for (int i = 0; i < 6; i++) {
 			mPlatforms[i].move(0, 1);
 		}
+		//alien.move(0, 1);
 
 	}
 
@@ -69,34 +77,26 @@ public:
 
 		for (int i = 0; i < 6; i++) {
 
-			//mPlatforms[i].move(0, 300);
 
 			if (mPlatforms[i].getPosition().y > 800) {
 				mPlatforms.erase(mPlatforms.begin());
 				mPlatforms.push_back(generateNew());
-				
-			}
-			/*if (mPlatformCount < 6) {
-				while (mPlatformCount < 6)
+				if (alien.getPosition().y > 1050)
 				{
-					mPlatforms.push_back(generateNew());
-					mPlatformCount++;
+					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y + 55);
+					alien.setPosition(alPos);
 				}
 				
-			}*/
+			}
 
 		}
 		
 	}
 
-	/*void popFront(vector<Platform> platforms) {
 
-		platforms.front() = platforms.back();
-		platforms.pop_back();
-
-	}*/
 
 private:
 	int mPlatformCount;
 	vector<Platform> mPlatforms;
+	Alien alien;
 };

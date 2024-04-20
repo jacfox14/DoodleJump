@@ -15,18 +15,26 @@ int main() {
 	Events move;
 	sf::Event e;
 	Actions a;
+	Alien alien;
 
 	sf::Vector2f size(50.0, 100.0);
 	sf::Vector2f pos(500, 500);
-	sf::Color color = sf::Color::Green;
+	sf::Color color = sf::Color::Blue;
 
 	Player p1(size, pos, color);
+
+	sf::Color bulColor = sf::Color::Red;
+	sf::Vector2f bulletPosition(1030,1030);
+
+	Bullet bullet(bulletPosition, bulColor);
 
 	bool rising = false;
 	bool jump = false;
 	int riseCounter = 0;
 	bool movePlat = false;
 	int movePlatCounter = 0;
+	bool shot = false;
+	bool moveShot = true;
 
 	while (window.isOpen()) {
 
@@ -84,7 +92,28 @@ int main() {
 
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		
+			shot = true;
+			moveShot = true;
+		
+		}
+
+		if (shot) {
+
+			if (moveShot) {
+				bullet.setPosition(p1.getPosition());
+				moveShot = false;
+			}
+			
+			move.shoot(bullet);
+			
+
+			if (bullet.getPosition().y < -30) {
+				shot = false;
+			}
+
+		}
 
 		a.inBounds(window, p1);
 
@@ -95,12 +124,16 @@ int main() {
 		window.draw(p1);
 		//		window.draw(plat1);
 		pg.drawPlatforms(window);
+		window.draw(bullet);
+		window.draw(alien);
 
 		// end the current frame
 		window.display();
 
 
 	}
+
+
 
 	/*sf::Texture texture;
 	if (!texture.loadFromFile("image.jpg"))
