@@ -17,6 +17,9 @@ int main() {
 	Actions a;
 	Alien alien;
 	Bullet bullet;
+	sf::Text text;
+	sf::Font myFont;
+	myFont.loadFromFile("Whimsy.ttf");
 
 	sf::Vector2f size(50.0, 100.0);
 	sf::Texture t;
