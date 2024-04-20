@@ -33,11 +33,27 @@ public:
 			window.draw(mPlatforms[i]);
 		}
 	}
+
 	Platform& generateNew() {
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
 		sf::Color green = sf::Color::Green;
 		return *(new Platform(size, position, green));
+	}
+
+	bool checkPlatformCollsion(Player& p1) {
+
+		bool collides = false;
+
+		for (int i = 0; i < 6; i++) {
+
+			if (p1.getGlobalBounds().intersects(mPlatforms[i].getGlobalBounds())) {
+				collides = true;
+			}
+
+		}
+
+		return collides;
 	}
 
 private:
