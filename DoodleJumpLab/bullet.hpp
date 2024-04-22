@@ -6,7 +6,7 @@ public :
 	{
 		this->setPosition(pos);
 		this->setFillColor(color);
-		this->setTexture(texture);
+		this->setTexture(&texture);
 	}
 private: 
 };

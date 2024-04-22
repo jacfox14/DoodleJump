@@ -29,6 +29,10 @@ int main() {
 	Player p1(size, pos, color, t);
 	sf::Color color = sf::Color::Blue;
 
+	sf::Texture t2;
+	t2.loadFromFile("image.jpg");
+
+
 	bool rising = false;
 	bool jump = false;
 	int riseCounter = 0;
@@ -127,6 +131,7 @@ int main() {
 		pg.drawPlatforms(window);
 		window.draw(bullet);
 		window.draw(alien);
+		window.draw()
 
 		// end the current frame
 		window.display();
