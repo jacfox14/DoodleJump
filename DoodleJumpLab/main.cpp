@@ -130,6 +130,8 @@ int main() {
 
 		}
 
+		move.shotAlien(bullet,alien);
+
 		a.inBounds(window, p1);
 
 		// clear the window with black color

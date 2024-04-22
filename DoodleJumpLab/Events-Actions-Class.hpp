@@ -1,6 +1,7 @@
 #include "SFML/Graphics.hpp"
 #include "Player.hpp"
 #include "bullet.hpp"
+#include "Alien.hpp"
 class Events
 {
 private:
@@ -24,6 +25,14 @@ public:
 
 	void shoot(Bullet& obj1) {//user presses space bar, sprite is changed to face upward, bullet sprite is loaded and moves upwards	
 			obj1.move(0, -0.8);
+	}
+
+	void shotAlien(Bullet& bull, Alien& al) {
+
+		if (bull.getGlobalBounds().intersects(al.getGlobalBounds())) {
+			al.move(1000, 0);
+		}
+
 	}
 	
 };

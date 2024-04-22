@@ -85,7 +85,7 @@ public:
 			if (mPlatforms[i].getPosition().y > 800) {
 				mPlatforms.erase(mPlatforms.begin());
 				mPlatforms.push_back(generateNew());
-				if (alien.getPosition().y > 1050)
+				if (alien.getPosition().y > 1500)
 				{
 					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y - 100);
 					alien.setPosition(alPos);
