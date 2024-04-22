@@ -15,6 +15,7 @@ int main(void) {
 	Events move;
 	sf::Event e;
 	Actions a;
+	int gameScore = 0;
 	
 	sf::Text text;
 	sf::Font myFont;
@@ -23,6 +24,12 @@ int main(void) {
 	text.setCharacterSize(50);
 	text.setFont(myFont);
 	text.setString("GAME OVER");
+
+	sf::Text scoreText;
+	scoreText.setPosition(450, 500);
+	scoreText.setCharacterSize(50);
+	scoreText.setFont(myFont);
+	
 
 	sf::Vector2f size(50, 50);
 	sf::Texture t;
@@ -93,6 +100,7 @@ int main(void) {
 				if (p1.getPosition().y < 400) {
 
 					movePlat = true;
+					
 
 				}
 			}
@@ -111,6 +119,7 @@ int main(void) {
 			if (movePlatCounter > 300) {
 				movePlat = false;
 				movePlatCounter = 0;
+				gameScore += 200;
 			}
 
 		}
@@ -151,7 +160,9 @@ int main(void) {
 		window.draw(alien);
 
 		if (gameOver == true) {
+			scoreText.setString(std::to_string(gameScore));
 			window.draw(text);
+			window.draw(scoreText);
 		}
 		// end the current frame
 		window.display();

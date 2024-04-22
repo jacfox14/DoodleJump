@@ -14,7 +14,7 @@ public:
 		for (int i = 1; i <= 6; i++) {
 			sf::Vector2f size(100.0f, 20.0f);
 			sf::Texture t1;
-			t1.loadFromFile("Platform.png");
+			t1.loadFromFile("grassPlatform.png");
 			sf::Color green = sf::Color::Green;
 			sf::Vector2f position;
 			if(i==1){
@@ -45,7 +45,7 @@ public:
 
 	Platform& generateNew() {
 		sf::Texture t1;
-		t1.loadFromFile("Platform.png");
+		t1.loadFromFile("grassPlatform.png");
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
 		sf::Color green = sf::Color::Green;
