@@ -16,6 +16,10 @@ int main() {
 	sf::Event e;
 	Actions a;
 	Alien alien;
+	Bullet bullet;
+	sf::Text text;
+	sf::Font myFont;
+	myFont.loadFromFile("Whimsy.ttf");
 
 	sf::Vector2f size(198, 198);
 	sf::Texture t;
@@ -24,12 +28,9 @@ int main() {
 	t.loadFromFile("Andy.jpg");
 	Player p1(size, pos, color, t);
 
-	sf::Color bulColor = sf::Color::Red;
-	sf::Vector2f bulletPosition(1030,1030);
+	sf::Texture t2;
+	t2.loadFromFile("image.jpg");
 
-	t.loadFromFile("bullet.png");
-
-	Bullet bullet(bulletPosition, bulColor, t);
 
 	bool rising = false;
 	bool jump = false;
@@ -129,10 +130,17 @@ int main() {
 		pg.drawPlatforms(window);
 		window.draw(bullet);
 		window.draw(alien);
+		window.draw()
 
 		// end the current frame
 		window.display();
-
+		if (p1.getPosition().y > 1000) {
+			window.clear();
+			text.setCharacterSize(50);
+			text.setString("Game Over");
+			text.setFont(myFont);
+			window.draw(text);
+		}
 
 	}
 
