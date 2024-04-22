@@ -19,8 +19,7 @@ int main(void) {
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
-	text.setColor(sf::Color::Red);
-	text.setPosition(500, 500);
+	text.setPosition(325, 400);
 	text.setCharacterSize(50);
 	text.setFont(myFont);
 	text.setString("GAME OVER");
@@ -66,101 +65,96 @@ int main(void) {
 			}
 
 		}
+		
 		gameOver = a.endGame(p1, alien);
-		if (gameOver == true) {
-			window.clear();
-			window.draw(text);
-			if (e.type == sf::Event::KeyPressed) {
-				window.clear();
-				//rerun game loop here
+
+
+		move.movementInput(window, p1);
+
+		int direction = 1;
+
+
+		rising = pg.checkPlatformCollsion(p1);
+
+		if (rising || jump) {
+
+			if (riseCounter == 0) {
+				jump = true;
 			}
+
+			riseCounter++;
+			p1.move(0, -0.5);
+
+			if (riseCounter > 600) {
+
+				jump = false;
+				riseCounter = 0;
+
+				if (p1.getPosition().y < 400) {
+
+					movePlat = true;
+
+				}
+			}
+
 		}
-		else if(gameOver == false) {
-			move.movementInput(window, p1);
+		else {
+			p1.move(0, 0.1);
+		}
 
-			int direction = 1;
+	if (movePlat)
+	{
+		pg.MovePlatformsUp(alien);
+		pg.CheckForNewPLatforms(alien);
+		movePlatCounter++;
 
-
-			rising = pg.checkPlatformCollsion(p1);
-
-			if (rising || jump) {
-
-				if (riseCounter == 0) {
-					jump = true;
-				}
-
-				riseCounter++;
-				p1.move(0, -0.5);
-
-				if (riseCounter > 600) {
-
-					jump = false;
-					riseCounter = 0;
-
-					if (p1.getPosition().y < 400) {
-
-						movePlat = true;
-
-					}
-				}
-
-			}
-			else {
-				p1.move(0, 0.1);
+			if (movePlatCounter > 300) {
+				movePlat = false;
+				movePlatCounter = 0;
 			}
 
-		if (movePlat)
-		{
-			pg.MovePlatformsUp();
-			pg.CheckForNewPLatforms();
-			movePlatCounter++;
+		}
 
-				if (movePlatCounter > 300) {
-					movePlat = false;
-					movePlatCounter = 0;
-				}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 
+			shot = true;
+			moveShot = true;
+
+		}
+
+		if (shot) {
+
+			if (moveShot) {
+				bullet.setPosition(p1.getPosition());
+				moveShot = false;
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			move.shoot(bullet);
 
-				shot = true;
-				moveShot = true;
 
+			if (bullet.getPosition().y < -30) {
+				shot = false;
 			}
 
-			if (shot) {
-
-				if (moveShot) {
-					bullet.setPosition(p1.getPosition());
-					moveShot = false;
-				}
-
-				move.shoot(bullet);
-
-
-				if (bullet.getPosition().y < -30) {
-					shot = false;
-				}
-
-			}
-
+		}
+		move.deathByAlien(p1, alien);
+		move.shotAlien(bullet, alien);
 		a.inBounds(window, p1);
 
-			// clear the window with black color
-			window.clear();
+		// clear the window with black color
+		window.clear();
 
 		// draw everything here...
 		window.draw(p1);
-		//		window.draw(plat1);
 		pg.drawPlatforms(window);
 		window.draw(bullet);
 		window.draw(alien);
-		window.draw()
 
-			// end the current frame
-			window.display();
+		if (gameOver == true) {
+			window.draw(text);
 		}
+		// end the current frame
+		window.display();
 
 
 
@@ -169,12 +163,6 @@ int main(void) {
 		{
 			std::cout << "failed to open" << std::endl;
 		}*/
-
-
-
-
-
-
 
 	}
 		

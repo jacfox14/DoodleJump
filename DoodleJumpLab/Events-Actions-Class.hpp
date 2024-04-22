@@ -34,6 +34,14 @@ public:
 		}
 
 	}
+
+	void deathByAlien(Player& p, Alien& al) {
+
+		if (p.getGlobalBounds().intersects(al.getGlobalBounds())) {
+			p.move(0,1000);
+		}
+
+	}
 	
 };
 
@@ -51,9 +59,6 @@ public:
 	}
 	bool endGame(Player& player1, Alien& alien) {
 		if (player1.getPosition().y >= 1000) {
-			return true;
-		}
-		if (player1.getGlobalBounds().intersects(alien.getGlobalBounds())) {
 			return true;
 		}
 	}
