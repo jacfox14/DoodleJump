@@ -7,7 +7,7 @@
 #include <iostream>
 #include "PlatformGenerator.hpp"
 
-int main() {
+int main(void) {
 
 	PlatformGenerator pg;
 	Window w;
@@ -19,6 +19,11 @@ int main() {
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
+	text.setColor(sf::Color::Red);
+	text.setPosition(500, 500);
+	text.setCharacterSize(50);
+	text.setFont(myFont);
+	text.setString("GAME OVER");
 
 	sf::Vector2f size(50, 50);
 	sf::Texture t;
@@ -50,6 +55,7 @@ int main() {
 	int movePlatCounter = 0;
 	bool shot = false;
 	bool moveShot = true;
+	bool gameOver = false;
 
 	while (window.isOpen()) {
 
@@ -60,82 +66,89 @@ int main() {
 			}
 
 		}
-
-		move.movementInput(window, p1);
-
-		int direction = 1;
-
-
-		rising = pg.checkPlatformCollsion(p1);
-
-		if (rising || jump) {
-
-			if (riseCounter == 0) {
-				jump = true;
+		gameOver = a.endGame(p1, alien);
+		if (gameOver == true) {
+			window.clear();
+			window.draw(text);
+			if (e.type == sf::Event::KeyPressed) {
+				window.clear();
+				//rerun game loop here
 			}
+		}
+		else if(gameOver == false) {
+			move.movementInput(window, p1);
 
-			riseCounter++;
-			p1.move(0, -0.5);
+			int direction = 1;
 
-			if (riseCounter > 600) {
-				
-				jump = false;
-				riseCounter = 0;
 
-				if (p1.getPosition().y < 400) {
+			rising = pg.checkPlatformCollsion(p1);
 
-					movePlat = true;
+			if (rising || jump) {
 
+				if (riseCounter == 0) {
+					jump = true;
 				}
-			}
 
-		}
-		else {
-			p1.move(0, 0.1);
-		}
+				riseCounter++;
+				p1.move(0, -0.5);
+
+				if (riseCounter > 600) {
+
+					jump = false;
+					riseCounter = 0;
+
+					if (p1.getPosition().y < 400) {
+
+						movePlat = true;
+
+					}
+				}
+
+			}
+			else {
+				p1.move(0, 0.1);
+			}
 
 		if (movePlat)
 		{
-			pg.MovePlatformsUp(alien);
-			pg.CheckForNewPLatforms(alien);
+			pg.MovePlatformsUp();
+			pg.CheckForNewPLatforms();
 			movePlatCounter++;
 
-			if (movePlatCounter > 300) {
-				movePlat = false;
-				movePlatCounter = 0;
+				if (movePlatCounter > 300) {
+					movePlat = false;
+					movePlatCounter = 0;
+				}
+
 			}
 
-		}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		
-			shot = true;
-			moveShot = true;
-		
-		}
+				shot = true;
+				moveShot = true;
 
-		if (shot) {
-
-			if (moveShot) {
-				bullet.setPosition(p1.getPosition());
-				moveShot = false;
-			}
-			
-			move.shoot(bullet);
-			
-
-			if (bullet.getPosition().y < -30) {
-				shot = false;
 			}
 
-		}
+			if (shot) {
 
-		move.shotAlien(bullet,alien);
+				if (moveShot) {
+					bullet.setPosition(p1.getPosition());
+					moveShot = false;
+				}
+
+				move.shoot(bullet);
+
+
+				if (bullet.getPosition().y < -30) {
+					shot = false;
+				}
+
+			}
 
 		a.inBounds(window, p1);
 
-		// clear the window with black color
-		window.clear();
+			// clear the window with black color
+			window.clear();
 
 		// draw everything here...
 		window.draw(p1);
@@ -143,32 +156,27 @@ int main() {
 		pg.drawPlatforms(window);
 		window.draw(bullet);
 		window.draw(alien);
+		window.draw()
 
-		// end the current frame
-		window.display();
-		if (p1.getPosition().y > 1000) {
-			window.clear();
-			text.setCharacterSize(50);
-			text.setString("Game Over");
-			text.setFont(myFont);
-			window.draw(text);
+			// end the current frame
+			window.display();
 		}
 
+
+
+		/*sf::Texture texture;
+		if (!texture.loadFromFile("image.jpg"))
+		{
+			std::cout << "failed to open" << std::endl;
+		}*/
+
+
+
+
+
+
+
 	}
-
-
-
-	/*sf::Texture texture;
-	if (!texture.loadFromFile("image.jpg"))
-	{
-		std::cout << "failed to open" << std::endl;
-	}*/
-
-
-
-
-
-
-
+		
 	return 0;
 }

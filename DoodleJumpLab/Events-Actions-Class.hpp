@@ -49,9 +49,12 @@ public:
 			obj.setPosition(1000, obj.getPosition().y);
 		}
 	}
-	void endGame(sf::RenderWindow& window, sf::Sprite& obj1, sf::Sprite& obj2) {
-		if (obj1.getPosition().y < obj2.getPosition().y) {
-			window.clear();
+	bool endGame(Player& player1, Alien& alien) {
+		if (player1.getPosition().y >= 1000) {
+			return true;
+		}
+		if (player1.getGlobalBounds().intersects(alien.getGlobalBounds())) {
+			return true;
 		}
 	}
 	bool collisionDetection(sf::RenderWindow& window, sf::RectangleShape& obj1, sf::CircleShape& obj2) {
