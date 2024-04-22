@@ -2,11 +2,12 @@
 
 class Bullet : public sf::CircleShape{
 public :
-	Bullet(sf::Vector2f& pos, const sf::Color& color, const sf::Texture& text) : sf::CircleShape(10)
+	
+	Bullet(sf::Vector2f& pos, const sf::Texture& text) : sf::CircleShape(10)
 	{
 		this->setPosition(pos);
-		this->setFillColor(color);
-		this->setTexture(&texture);
+		//this->setFillColor(color);
+		this->setTexture(&text);
 	}
 private: 
 };

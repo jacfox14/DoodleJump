@@ -16,20 +16,25 @@ int main() {
 	sf::Event e;
 	Actions a;
 	Alien alien;
-	Bullet bullet;
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
 
-	sf::Vector2f size(198, 198);
+	sf::Vector2f size(50, 50);
 	sf::Texture t;
 	sf::Vector2f pos(500, 500);
 	sf::Color color(sf::Color::Red);
-	t.loadFromFile("Andy.jpg");
+	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 
 	sf::Texture t2;
 	t2.loadFromFile("image.jpg");
+	
+
+	sf::Texture tBullet;
+	sf::Vector2f posBullet(1020, 1020);
+	tBullet.loadFromFile("bullet.png");
+	Bullet bullet(posBullet,tBullet);
 
 
 	bool rising = false;
@@ -130,7 +135,6 @@ int main() {
 		pg.drawPlatforms(window);
 		window.draw(bullet);
 		window.draw(alien);
-		window.draw()
 
 		// end the current frame
 		window.display();
