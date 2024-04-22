@@ -67,17 +67,17 @@ public:
 		return collides;
 	}
 
-	void MovePlatformsUp() {
+	void MovePlatformsUp(Alien& alien) {
 		
 		for (int i = 0; i < 6; i++) {
 			mPlatforms[i].move(0, 1);
 		}
-		//alien.move(0, 1);
+		alien.move(0, 1);
 
 	}
 
 
-	void CheckForNewPLatforms() {
+	void CheckForNewPLatforms(Alien& alien) {
 
 		for (int i = 0; i < 6; i++) {
 
@@ -87,7 +87,7 @@ public:
 				mPlatforms.push_back(generateNew());
 				if (alien.getPosition().y > 1050)
 				{
-					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y + 55);
+					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y - 100);
 					alien.setPosition(alPos);
 				}
 				
@@ -102,5 +102,4 @@ public:
 private:
 	int mPlatformCount;
 	vector<Platform> mPlatforms;
-	Alien alien;
 };

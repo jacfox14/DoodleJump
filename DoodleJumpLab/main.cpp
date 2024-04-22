@@ -15,7 +15,7 @@ int main() {
 	Events move;
 	sf::Event e;
 	Actions a;
-	Alien alien;
+	
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
@@ -35,6 +35,12 @@ int main() {
 	sf::Vector2f posBullet(1020, 1020);
 	tBullet.loadFromFile("bullet.png");
 	Bullet bullet(posBullet,tBullet);
+
+
+	sf::Texture tAlien;
+	sf::Vector2f posAlien(1090, 1090);
+	tAlien.loadFromFile("Alien.png");
+	Alien alien(posAlien,tAlien);
 
 
 	bool rising = false;
@@ -90,8 +96,8 @@ int main() {
 
 		if (movePlat)
 		{
-			pg.MovePlatformsUp();
-			pg.CheckForNewPLatforms();
+			pg.MovePlatformsUp(alien);
+			pg.CheckForNewPLatforms(alien);
 			movePlatCounter++;
 
 			if (movePlatCounter > 300) {
