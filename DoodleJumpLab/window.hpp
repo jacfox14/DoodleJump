@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/graphics.hpp>
 class Window {
 public:

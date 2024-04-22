@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "SFML/Main.hpp"
 #include "SFML/System.hpp"
@@ -6,6 +7,7 @@
 #include "window.hpp"
 #include <iostream>
 #include "PlatformGenerator.hpp"
+#include "menu.hpp"
 
 int main() {
 
@@ -27,7 +29,12 @@ int main() {
 	sf::Color color(sf::Color::Red);
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
-	sf::Color color = sf::Color::Blue;
+	color = sf::Color::Blue;
+	Menu menu;
+
+	sf::Texture t2;
+	t2.loadFromFile("image.jpg");
+
 
 	bool rising = false;
 	bool jump = false;
@@ -64,7 +71,7 @@ int main() {
 			p1.move(0, -0.5);
 
 			if (riseCounter > 600) {
-				
+
 				jump = false;
 				riseCounter = 0;
 
@@ -94,10 +101,10 @@ int main() {
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		
+
 			shot = true;
 			moveShot = true;
-		
+
 		}
 
 		if (shot) {
@@ -106,9 +113,9 @@ int main() {
 				bullet.setPosition(p1.getPosition());
 				moveShot = false;
 			}
-			
+
 			move.shoot(bullet);
-			
+
 
 			if (bullet.getPosition().y < -30) {
 				shot = false;
@@ -118,25 +125,27 @@ int main() {
 
 		a.inBounds(window, p1);
 
-		// clear the window with black color
-		window.clear();
+		//// clear the window with black color
+		//window.clear();
 
-		// draw everything here...
-		window.draw(p1);
-		//		window.draw(plat1);
-		pg.drawPlatforms(window);
-		window.draw(bullet);
-		window.draw(alien);
+		//// draw everything here...
+		//window.draw(p1);
+		////		window.draw(plat1);
+		//pg.drawPlatforms(window);
+		//window.draw(bullet);
+		//window.draw(alien);
+		////window.draw();
 
-		// end the current frame
-		window.display();
-		if (p1.getPosition().y > 1000) {
-			window.clear();
-			text.setCharacterSize(50);
-			text.setString("Game Over");
-			text.setFont(myFont);
-			window.draw(text);
-		}
+		//// end the current frame
+		//window.display();
+		//if (p1.getPosition().y > 1000) {
+		//	window.clear();
+		//	text.setCharacterSize(50);
+		//	text.setString("Game Over");
+		//	text.setFont(myFont);
+		//	window.draw(text);
+		//}
+		menu.Run(window);
 
 	}
 

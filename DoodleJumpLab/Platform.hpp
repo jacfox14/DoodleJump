@@ -1,3 +1,4 @@
+#pragma once
 #include "Player.hpp"
 
 class Platform : public sf::RectangleShape
