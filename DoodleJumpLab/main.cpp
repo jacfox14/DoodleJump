@@ -8,8 +8,9 @@
 #include "PlatformGenerator.hpp"
 
 int main(void) {
-
-	PlatformGenerator pg;
+	sf::Texture t1;
+	t1.loadFromFile("Platform.png");
+	PlatformGenerator pg(t1);
 	Window w;
 	sf::RenderWindow& window = w.getWindow();
 	Events move;
@@ -34,12 +35,14 @@ int main(void) {
 	sf::Vector2f size(50, 50);
 	sf::Texture t;
 	sf::Vector2f pos(500, 500);
-	sf::Color color(sf::Color::Red);
+	sf::Color color(0, 255, 0, 0);
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 
 	sf::Texture t2;
 	t2.loadFromFile("image.jpg");
+	sf::Sprite background;
+	background.setTexture(t2);
 	
 
 	sf::Texture tBullet;
@@ -52,7 +55,6 @@ int main(void) {
 	sf::Vector2f posAlien(1090, 1090);
 	tAlien.loadFromFile("Alien.png");
 	Alien alien(posAlien,tAlien);
-
 
 	bool rising = false;
 	bool jump = false;
@@ -113,7 +115,7 @@ int main(void) {
 	if (movePlat)
 	{
 		pg.MovePlatformsUp(alien);
-		pg.CheckForNewPLatforms(alien);
+		pg.CheckForNewPLatforms(alien, t1);
 		movePlatCounter++;
 
 			if (movePlatCounter > 300) {
@@ -155,6 +157,7 @@ int main(void) {
 
 		// draw everything here...
 		window.draw(p1);
+		window.draw(background);
 		pg.drawPlatforms(window);
 		window.draw(bullet);
 		window.draw(alien);

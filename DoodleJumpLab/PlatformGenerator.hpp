@@ -10,12 +10,10 @@ class PlatformGenerator {
 public:
 	
 
-	PlatformGenerator():mPlatformCount(0) {
+	PlatformGenerator(sf::Texture& t1):mPlatformCount(0) {
 		for (int i = 1; i <= 6; i++) {
 			sf::Vector2f size(100.0f, 20.0f);
-			sf::Texture t1;
-			t1.loadFromFile("grassPlatform.png");
-			sf::Color green = sf::Color::Green;
+			sf::Color green = sf::Color(0, 255, 0 ,0);
 			sf::Vector2f position;
 			if(i==1){
 				position=sf::Vector2f(450.0f, 900.0f);
@@ -43,9 +41,7 @@ public:
 
 	}
 
-	Platform& generateNew() {
-		sf::Texture t1;
-		t1.loadFromFile("grassPlatform.png");
+	Platform& generateNew(sf::Texture& t1) {
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
 		sf::Color green = sf::Color::Green;
@@ -77,14 +73,14 @@ public:
 	}
 
 
-	void CheckForNewPLatforms(Alien& alien) {
+	void CheckForNewPLatforms(Alien& alien, sf::Texture& t1) {
 
 		for (int i = 0; i < 6; i++) {
 
 
 			if (mPlatforms[i].getPosition().y > 800) {
 				mPlatforms.erase(mPlatforms.begin());
-				mPlatforms.push_back(generateNew());
+				mPlatforms.push_back(generateNew(t1));
 				if (alien.getPosition().y > 1500)
 				{
 					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y - 100);
