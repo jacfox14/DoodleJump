@@ -93,6 +93,11 @@ public:
 		
 	}
 
+	bool isEmpty() {
+		if (this->mPlatformCount = 0) {
+			return true;
+		}
+	}
 
 
 private:

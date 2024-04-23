@@ -75,7 +75,7 @@ int main(void) {
 
 		}
 		
-		gameOver = a.endGame(p1, alien);
+		gameOver = a.endGame(p1);
 
 
 		move.movementInput(window, p1);

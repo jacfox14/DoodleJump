@@ -18,9 +18,6 @@ public:
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			obj1.move(0.3 * direction, 0);
 		}
-
-		
-
 	}
 
 	void shoot(Bullet& obj1) {//user presses space bar, sprite is changed to face upward, bullet sprite is loaded and moves upwards	
@@ -57,7 +54,7 @@ public:
 			obj.setPosition(1000, obj.getPosition().y);
 		}
 	}
-	bool endGame(Player& player1, Alien& alien) {
+	bool endGame(Player& player1) {
 		if (player1.getPosition().y >= 1000) {
 			return true;
 		}
