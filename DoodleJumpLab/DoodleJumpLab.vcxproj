@@ -148,6 +148,7 @@
     <ClInclude Include="bullet.hpp" />
     <ClInclude Include="cScreen.hpp" />
     <ClInclude Include="Events-Actions-Class.hpp" />
+    <ClInclude Include="game.hpp" />
     <ClInclude Include="gravity.hpp" />
     <ClInclude Include="menu.hpp" />
     <ClInclude Include="Platform.hpp" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <Image Include="..\..\..\..\..\Downloads\andy-jump-menu.png" />
     <Image Include="Alien.png" />
+    <Image Include="Andy.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Comic Sans MS.ttf" />
