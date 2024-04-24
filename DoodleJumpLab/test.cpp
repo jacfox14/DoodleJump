@@ -38,6 +38,11 @@ void testMovement() {
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
+
 	/* Initialize Events object for movement function */
 	Events e;
 
@@ -84,6 +89,11 @@ void testMovement() {
 		sf::Color color(0, 255, 0, 0);
 		t.loadFromFile("Andy.png");
 		Player p1(size, pos, color, t);
+
+		sf::Texture t2;
+		t2.loadFromFile("background.png");
+		sf::Sprite background;
+		background.setTexture(t2);
 
 	sf::Event e1;
 
@@ -165,6 +175,11 @@ void testMovement() {
 		sf::Color color(0, 255, 0, 0);
 		t.loadFromFile("Andy.png");
 		Player p1(size, pos, color, t);
+
+		sf::Texture t2;
+		t2.loadFromFile("background.png");
+		sf::Sprite background;
+		background.setTexture(t2);
 
 		/* Initializes Alien for player to collide into and check if player dies or not from colliding with alien */
 		sf::Texture tAlien;
