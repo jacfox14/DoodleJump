@@ -17,7 +17,7 @@ int main() {
 	Window w;
 	sf::RenderWindow& window = w.getWindow();
 	std::vector<cScreen*> Screens;
-	int screen = 0;
+	int select = 0;
 	
 	
 	Menu menu;
@@ -26,8 +26,9 @@ int main() {
 
 	Screens.push_back(&menu);
 	Screens.push_back(&game);
-	while (screen >= 0) {
-		screen = Screens[screen]->Run(window);
+	Screens.push_back(&tcMenu);
+	while (select >= 0) {
+		select = Screens[select]->Run(window);
 	}
 	
 	return 0;

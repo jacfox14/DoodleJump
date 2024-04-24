@@ -1,3 +1,10 @@
+/*
+Project Section: Events and Actions class
+Purpose: Focuses on general functionality of the game, prioritizes keeping player in screen, updated, and moving around; works on detection of certain special events happening, like player death by alien or falling, when to end game, and shooting bullets
+Date Started: 04/14/2024
+Updates: 04/15/2024-04/23/2024
+Referenced: main.cpp, test.hpp
+*/
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Player.hpp"
@@ -7,24 +14,48 @@ class Events
 {
 private:
 public:
-	void movementInput(sf::RenderWindow& window, Player& obj1) {//user presses left and right arrows, changes direction of where the player is going
+/*************************************************************
+ * Function: movementInput()                                 *
+ * Date Created: 04/14/2024                                  *
+ * Date Last Modified: 04/20/2024                            *
+ * Description: checks if keyboard inputs are given by user	 *
+ *				moves player								 *
+ * Input parameters: refernece to RenderWindow, reference to *
+ *					 Player									 *
+ * Returns:													 *
+ *************************************************************/
+	void movementInput(sf::RenderWindow& window, Player& obj1) {
 		
-		int x = 0, y = 0, yPrime = 0;
+		int x = 0, y = 0;
 		int direction = 1;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			direction = -1;
-			obj1.move(0.3 * direction, 0);
+			obj1.move(0.3f * direction, 0);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-			obj1.move(0.3 * direction, 0);
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			obj1.move(0.3f * direction, 0);
 		}
 	}
-
-	void shoot(Bullet& obj1) {//user presses space bar, sprite is changed to face upward, bullet sprite is loaded and moves upwards	
-			obj1.move(0, -0.8);
+/*************************************************************
+ * Function: shoot()										 *
+ * Date Created: 04/14/2024                                  *
+ * Date Last Modified: 04/20/2024                            *
+ * Description: moves Bullet type object up screen           *
+ * Input parameters: reference to Bullet					 *
+ * Returns:													 *
+ *************************************************************/
+	void shoot(Bullet& obj1) {	
+			obj1.move(0, -0.8f);
 	}
-
+/*************************************************************
+ * Function: shotAlien()									 *
+ * Date Created: 04/22/2024                                  *
+ * Date Last Modified: 04/22/2024                            *
+ * Description: detects if bullet and alien intersect        *
+ * Input parameters: refernece to Bullet, reference to Alien *
+ * Returns:													 *
+ *************************************************************/
 	void shotAlien(Bullet& bull, Alien& al) {
 
 		if (bull.getGlobalBounds().intersects(al.getGlobalBounds())) {
@@ -32,7 +63,14 @@ public:
 		}
 
 	}
-
+/*************************************************************
+ * Function: deathByAlien()									 *
+ * Date Created: 04/22/2024                                  *
+ * Date Last Modified: 04/22/2024                            *
+ * Description: detects if bullet and alien intersect        *
+ * Input parameters: refernece to Bullet, reference to Alien *
+ * Returns:													 *
+ *************************************************************/
 	void deathByAlien(Player& p, Alien& al) {
 
 		if (p.getGlobalBounds().intersects(al.getGlobalBounds())) {

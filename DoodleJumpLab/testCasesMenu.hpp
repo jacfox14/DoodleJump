@@ -16,7 +16,6 @@ enum Selection {
 };
 class TestCasesMenu :public cScreen {
 public:
-	//TestCasesMenu(){}
 	virtual int Run(sf::RenderWindow& window) {
 		Test testCases;
 		sf::Event Event;
@@ -45,18 +44,21 @@ public:
 
 		//initializing text
 		sf::Text movement, falling, alien, platform, generatePlat;
+		movement.setString("Movement"), falling.setString("Falling"), alien.setString("Alien collision"), platform.setString("Platform collision"),
+			generatePlat.setString("Generate platform");
+		movement.setPosition({ 375.0f,240.0f });
+		falling.setPosition({ 375.0f,340.0f });
+		alien.setPosition({ 375.0f,440.0f });
+		platform.setPosition({ 375.0f,540.0f });
+		generatePlat.setPosition({ 375.0f,640.0f });
 		std::vector<sf::Text> textList{ movement,falling,alien,platform,generatePlat };
 		//Ranged-based for loop initializes each text inside textList vector, position is set outisde the loop
-		for (auto i : textList) {
+		for (auto& i : textList) {
 			i.setFont(font);
 			i.setCharacterSize(40);
-			i.setFillColor(sf::Color());
+			i.setFillColor({0,0,0,255});
 		}
-		movement.setPosition({ 375.0f,340.0f });
-		falling.setPosition({ 375.0f,440.0f });
-		alien.setPosition({ 375.0f,540.0f });
-		platform.setPosition({ 375.0f,640.0f });
-		generatePlat.setPosition({ 375.0f,740.0f });
+		
 
 		//event loop
 		while (running) {
@@ -64,21 +66,24 @@ public:
 				if (Event.type == sf::Event::Closed) {
 					running = false;
 					window.close();
-					return 1;
+					return 0;
+					
 				}
 				else if (Event.type == sf::Event::KeyReleased) {
 					if (!hasSelected) {
 						switch (Event.key.code) {
 						case sf::Keyboard::Up:
-							if (selection != 1) {
-								selection -= 1;
-								break;
+							if (selection > 1) {
+								selection--;
+								
 							}
+							break;
 						case sf::Keyboard::Down:
-							if (selection != 4) {
-								selection += 1;
-								break;
+							if (selection < 5) {
+								selection++;
+								
 							}
+							break;
 						case sf::Keyboard::Return:
 							hasSelected = true;
 							break;
@@ -115,29 +120,34 @@ public:
 						}
 						
 					}
-					//setting color of selection
-					for (int i = 0; i < 5; i++) {
-						if (i == selection) {
-							textList[i].setFillColor({ 255,0,0,255 });
-						}
-						else {
-							//default constructor of sf::Color is black
-							textList[i].setFillColor(sf::Color());
-						}
+					
+				}
+				//setting color of selection
+				for (int i = 0; i < 5; i++) {
+					if (i+1 == selection) {
+						textList[i].setFillColor({ 255,0,0,255 });
+					}
+					else {
+						textList[i].setFillColor(sf::Color(0,0,0,255));
 					}
 				}
+				//Rendering screen
+				window.clear();
+				window.draw(background_spr);
+				for (const auto& i : textList) {
+					window.draw(i);
+				}
+				window.display();
+				
 			}
 			if (!running) {
 				break;
 			}
+			
 		}
-		window.clear();
-		window.draw(background_spr);
-		for (auto i : textList) {
-			window.draw(i);
-		}
-		window.display();
+		
 		//returns to main menu
-		return 1;
+		return 0;
+		
 	}
 };

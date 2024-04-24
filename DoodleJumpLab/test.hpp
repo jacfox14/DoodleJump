@@ -9,18 +9,12 @@
 #include "PlatformGenerator.hpp"
 #include "Alien.hpp"
 
-class Test : public Window
+class Test
 {
 public:
-	bool testMovement();
-	bool testFalling();
-	bool testAlien();
-	bool testPlatform();
-	bool testGeneratePlat();
-	
-private:
-	sf::RenderWindow mWindow;
-	Player p1;
-	Platform plat1;
-	Alien a1;
+	void testMovement();
+	void testFalling();
+	void testAlien();
+	void testPlatform();
+	void testGeneratePlat();
 };

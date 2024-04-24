@@ -1,6 +1,8 @@
+#pragma once
 #include "test.hpp"
+#include <iostream>
 
-bool Test::testMovement() {
+void Test::testMovement() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0f, 500.0f);
@@ -19,15 +21,11 @@ bool Test::testMovement() {
 		mWindow.draw(p1);
 		e.movementInput(mWindow, p1);
 		mWindow.display();
-		if (p1.getPosition() != pos) {
-			return true;
-		}
 	}
 	mWindow.clear();
-	return success;
 }
 
-bool Test::testFalling() {
+void Test::testFalling() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -46,16 +44,11 @@ bool Test::testFalling() {
 		p1.move(0, 0.1);
 		a.endGame(p1);
 		mWindow.display();
-		if (a.endGame(p1) == true) {
-			success = true;
-			return success;
-		}
 	}
 	mWindow.clear();
-	return success;
 }
 
-bool Test::testAlien() {
+void Test::testAlien() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -85,32 +78,27 @@ bool Test::testAlien() {
 		e.deathByAlien(p1, a1);
 		a.endGame(p1);
 		mWindow.display();
-		if (a.endGame(p1) == true) {
-			success = true;
-			return success;
-		}
 	}
-	return success;
 }
 
-bool Test::testPlatform() {
+void Test::testPlatform() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
 	camera.setCenter(center);
 	mWindow.setView(camera);
-	sf::Vector2f size(50, 50);
 	sf::Texture t;
 	sf::Vector2f pos(500, 500);
+	sf::Vector2f size(50.0f,50.0f);
 	sf::Color color(0, 255, 0, 0);
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 	sf::Texture t1;
-	t1.loadFromFile("R.png");
-	sf::Vector2f sizePlat(100.0f, 20.0f);
+	t1.loadFromFile("Platform.png");
+	size = { 100.0f, 20.0f };
 	sf::Vector2f position((rand() % 800), 0.0f);
 	sf::Color green = sf::Color::Green;
-	Platform plat1(sizePlat, position, green, t1);
+	Platform plat1(size, position, green, t1);
 	bool success = false;
 	PlatformGenerator pg;
 	plat1.setPosition(500, 800);
@@ -124,13 +112,12 @@ bool Test::testPlatform() {
 		pg.checkPlatformCollsion(p1);
 		mWindow.display();
 		if (pg.checkPlatformCollsion(p1) == true) {
-			return true;
+			std::cout << "Success!" << std::endl;
 		}
 	}
-	return success;
 }
 
-bool Test::testGeneratePlat() {
+void Test::testGeneratePlat() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -143,8 +130,5 @@ bool Test::testGeneratePlat() {
 	bool success = false;
 	while (mWindow.isOpen()) {
 		pg.generateNew(t1);
-		if (!pg.isEmpty()) {
-			return true;
-		}
 	}
 }

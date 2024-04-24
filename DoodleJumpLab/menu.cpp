@@ -75,7 +75,7 @@ int Menu::Run(sf::RenderWindow& window)
                 if (sf::Mouse::getPosition(window).x > 440.0f && sf::Mouse::getPosition(window).x < 600.0f) {
                     if (sf::Mouse::getPosition(window).y > 800.0f && sf::Mouse::getPosition(window).y < 900.0f) {
                         currentSelection = __scores;
-                        std::cout << "scores clicked" << std::endl;
+                        //std::cout << "scores clicked" << std::endl;
                         confirm = 1;
                         
                        
@@ -85,7 +85,7 @@ int Menu::Run(sf::RenderWindow& window)
                 if (sf::Mouse::getPosition(window).x > 600.0f && sf::Mouse::getPosition(window).x < 775.0f) {
                     if (sf::Mouse::getPosition(window).y > 760.0f && sf::Mouse::getPosition(window).y < 940.0f) {
                         currentSelection = __test_cases;
-                        std::cout << "test cases clicked" << std::endl;
+                        //std::cout << "test cases clicked" << std::endl;
                         confirm = 1;
                     }
                 }
@@ -108,11 +108,11 @@ int Menu::Run(sf::RenderWindow& window)
                 case __scores:
                     
                     running = false;
-                    return 2;
+                    return 3;
                     break;
                 case __test_cases:
                     running = false;
-                    return 3;
+                    return 2;
                     break;
                 default:
                     break;
