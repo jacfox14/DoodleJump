@@ -2,27 +2,45 @@
 #include "test.hpp"
 #include <iostream>
 
-void Test::testMovement() {
-	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
+Test::Test() 
+{
+	sf::Texture background_t;
+	if(!background_t.loadFromFile("background.png")) {
+		std::cout << "Error loading file: 'background.png'" << std::endl;
+	}
+	background.setTexture(background_t);
+	/*window.setSize({ 800,1000});
+	window.setTitle("TEST CASE");*/
 	sf::View camera;
-	sf::Vector2f center(500.0f, 500.0f);
-	camera.setCenter(center);
-	mWindow.setView(camera);
-	sf::Vector2f size(50, 50);
-	sf::Texture t;
-	sf::Vector2f pos(500.0f, 500);
+	camera.reset(sf::FloatRect(0, 0, 800.0f, 1000.0f));
+	window.setView(camera);
+	window.close();
+}
+
+void Test::testMovement() {
+	sf::Vector2f size(50.0f, 50.0f);
+	sf::Texture player;
+	sf::Vector2f pos(500.0f, 500.0f);
 	sf::Color color(0, 255, 0, 0);
-	t.loadFromFile("Andy.png");
-	Player p1(size, pos, color, t);
+	if (!player.loadFromFile("Andy.png")) {
+		std::cout << "Error loading file: 'Andy.png'" << std::endl;
+	}
+	Player p1(size, pos, color, player);
 	bool success = false;
 	Events e;
+	sf::Event Event;
 	/*sf::Vector2f pos = p1.getPosition();*/
-	while (mWindow.isOpen()) {
-		mWindow.draw(p1);
-		e.movementInput(mWindow, p1);
-		mWindow.display();
+	window.create(sf::VideoMode(800, 1000), "TEST CASE");
+	while (window.isOpen()) {
+		while (window.pollEvent(Event)) {
+			if (Event.type == sf::Event::Closed) {
+				window.close();
+			}
+		}
+		window.draw(p1);
+		e.movementInput(window, p1);
+		window.display();
 	}
-	mWindow.clear();
 }
 
 void Test::testFalling() {

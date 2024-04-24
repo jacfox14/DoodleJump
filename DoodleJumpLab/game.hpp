@@ -12,6 +12,14 @@
 
 class Game:public cScreen{
 public:
+public:
+	/*************************************************************
+	 * Function: Run()											 *
+	 *									                         *
+	 * Description: Holds game event loop						 *
+	 * Input parameters: Main window reference					 *
+	 * Returns:	Returns to main menu							 *
+	 *************************************************************/
 	virtual int Run(sf::RenderWindow& window) {
 		sf::Texture t1;
 		t1.loadFromFile("Platform.png");

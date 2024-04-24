@@ -16,6 +16,16 @@ enum Selection {
 };
 class TestCasesMenu :public cScreen {
 public:
+public:
+	/*************************************************************
+	 * Function: Run()											 *
+	 *									                         *
+	 * Description: Overwritting pure virtual Run from cScreen	 *
+	 *				Holds event loop to select test case and	 *
+	 *				navigates to said test case					 *
+	 * Input parameters: Main window reference					 *
+	 * Returns:	Return to main menu								 *
+	 *************************************************************/
 	virtual int Run(sf::RenderWindow& window) {
 		Test testCases;
 		sf::Event Event;

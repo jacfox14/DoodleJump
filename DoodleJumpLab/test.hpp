@@ -12,9 +12,13 @@
 class Test
 {
 public:
+	Test();
 	void testMovement();
 	void testFalling();
 	void testAlien();
 	void testPlatform();
 	void testGeneratePlat();
+private:
+	sf::Sprite background;
+	sf::RenderWindow window;
 };

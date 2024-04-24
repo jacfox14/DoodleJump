@@ -29,11 +29,11 @@ public:
 		int x = 0, y = 0;
 		int direction = 1;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			direction = -1;
 			obj1.move(0.3f * direction, 0);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			obj1.move(0.3f * direction, 0);
 		}
 	}
