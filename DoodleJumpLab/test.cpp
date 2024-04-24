@@ -79,7 +79,7 @@ void Test::testAlien() {
 	}
 }
 
-bool Test::testPlatform() {
+void Test::testPlatform() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -109,11 +109,7 @@ bool Test::testPlatform() {
 		}
 		pg.checkPlatformCollsion(p1);
 		mWindow.display();
-		if (pg.checkPlatformCollsion(p1) == true) {
-			return true;
-		}
 	}
-	return success;
 }
 
 void Test::testGeneratePlat() {
