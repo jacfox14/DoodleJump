@@ -161,17 +161,13 @@ int main() {
 
 
 
-	/*sf::Texture texture;
-	if (!texture.loadFromFile("image.jpg"))
-	{
-		std::cout << "failed to open" << std::endl;
-	}*/
+		/*sf::Texture texture;
+		if (!texture.loadFromFile("image.jpg"))
+		{
+			std::cout << "failed to open" << std::endl;
+		}*/
 
-
-
-
-
-
-
+	}
+		
 	return 0;
 }

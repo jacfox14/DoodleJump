@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "Player.hpp"
 #include "bullet.hpp"
+#include "Alien.hpp"
 class Events
 {
 private:
@@ -19,13 +20,26 @@ public:
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			obj1.move(0.3 * direction, 0);
 		}
-
-		
-
 	}
 
 	void shoot(Bullet& obj1) {//user presses space bar, sprite is changed to face upward, bullet sprite is loaded and moves upwards	
 			obj1.move(0, -0.8);
+	}
+
+	void shotAlien(Bullet& bull, Alien& al) {
+
+		if (bull.getGlobalBounds().intersects(al.getGlobalBounds())) {
+			al.move(1000, 0);
+		}
+
+	}
+
+	void deathByAlien(Player& p, Alien& al) {
+
+		if (p.getGlobalBounds().intersects(al.getGlobalBounds())) {
+			p.move(0,1000);
+		}
+
 	}
 	
 };
@@ -42,9 +56,9 @@ public:
 			obj.setPosition(1000, obj.getPosition().y);
 		}
 	}
-	void endGame(sf::RenderWindow& window, sf::Sprite& obj1, sf::Sprite& obj2) {
-		if (obj1.getPosition().y < obj2.getPosition().y) {
-			window.clear();
+	bool endGame(Player& player1) {
+		if (player1.getPosition().y >= 1000) {
+			return true;
 		}
 	}
 	bool collisionDetection(sf::RenderWindow& window, sf::RectangleShape& obj1, sf::CircleShape& obj2) {

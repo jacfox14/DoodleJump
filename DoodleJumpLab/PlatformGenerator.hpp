@@ -10,11 +10,10 @@ class PlatformGenerator {
 public:
 	
 
-	PlatformGenerator():mPlatformCount(0) {
+	PlatformGenerator(sf::Texture& t1):mPlatformCount(0) {
 		for (int i = 1; i <= 6; i++) {
 			sf::Vector2f size(100.0f, 20.0f);
-			platformTexture.loadFromFile("Platform.png");
-			sf::Color green = sf::Color::Green;
+			sf::Color green = sf::Color(0, 255, 0 ,0);
 			sf::Vector2f position;
 			if(i==1){
 				position=sf::Vector2f(450.0f, 900.0f);
@@ -42,7 +41,7 @@ public:
 
 	}
 
-	Platform& generateNew() {
+	Platform& generateNew(sf::Texture& t1) {
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
 		sf::Color green = sf::Color::Green;
@@ -64,27 +63,27 @@ public:
 		return collides;
 	}
 
-	void MovePlatformsUp() {
+	void MovePlatformsUp(Alien& alien) {
 		
 		for (int i = 0; i < 6; i++) {
 			mPlatforms[i].move(0, 1);
 		}
-		//alien.move(0, 1);
+		alien.move(0, 1);
 
 	}
 
 
-	void CheckForNewPLatforms() {
+	void CheckForNewPLatforms(Alien& alien, sf::Texture& t1) {
 
 		for (int i = 0; i < 6; i++) {
 
 
 			if (mPlatforms[i].getPosition().y > 800) {
 				mPlatforms.erase(mPlatforms.begin());
-				mPlatforms.push_back(generateNew());
-				if (alien.getPosition().y > 1050)
+				mPlatforms.push_back(generateNew(t1));
+				if (alien.getPosition().y > 1500)
 				{
-					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y + 55);
+					sf::Vector2f alPos(mPlatforms.back().getPosition().x, mPlatforms.back().getPosition().y - 100);
 					alien.setPosition(alPos);
 				}
 				
@@ -94,11 +93,14 @@ public:
 		
 	}
 
+	bool isEmpty() {
+		if (this->mPlatformCount = 0) {
+			return true;
+		}
+	}
 
 
 private:
 	int mPlatformCount;
 	vector<Platform> mPlatforms;
-	Alien alien;
-	sf::Texture platformTexture;
 };
