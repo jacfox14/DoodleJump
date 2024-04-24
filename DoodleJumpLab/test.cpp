@@ -264,14 +264,14 @@ void Test::testPlatform() {
 
 	/* Initialize platform */
 	sf::Texture t1;
-	t1.loadFromFile("Platform.png");
+	t1.loadFromFile("R.png");
 	sf::Vector2f size(100.0f, 20.0f);
 	sf::Vector2f position((rand() % 800), 0.0f);
 	sf::Color green = sf::Color::Green;
 	Platform plat1(size, position, green, t1);
 
 	/* Initialize PlatformGenerator object for checking platform collision function */
-	PlatformGenerator pg(t1);
+	PlatformGenerator pg;
 
 	/* Sets platform origin */
 	plat1.setPosition(500, 800);
@@ -346,8 +346,8 @@ void Test::testGeneratePlat() {
 
 	/* Initialize PlatformGenerator object for generating new platform collision function */
 	sf::Texture t1;
-	t1.loadFromFile("Platform.png");
-	PlatformGenerator pg(t1);
+	t1.loadFromFile("R.png");
+	PlatformGenerator pg;
 
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
