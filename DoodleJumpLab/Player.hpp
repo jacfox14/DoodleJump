@@ -14,15 +14,16 @@ Referenced: main.cpp, test.hpp, Events-Actions-Class.hpp, player.hpp
 class Player : public sf::RectangleShape{
 
 public:
-	/*************************************************************
- * Function: Player(                                  *
- * Date Created:                                             *
- * Date Last Modified:                                       *
- * Description:                                              *
- * Input parameters:                                         *
- * Returns:                                                  *
- * Preconditions:                                            *
- * Postconditions:                                           *
+/*************************************************************
+ * Function: Player()                                        *
+ * Date Created: 04/14/2024                                  *
+ * Date Last Modified: 04/22/2024                            *
+ * Description: Constructor for player class,				 *
+ *				sets position, size, texture and velocity	 *
+ * Input parameters: const sf::Vector2f& size,				 *
+ *					 sf::Vector2f& pos,					     *
+ *					 const sf::Color& color,				 *
+ *					 sf::Texture& texture                    *
  *************************************************************/
 
 	Player(const sf::Vector2f& size, sf::Vector2f& pos, const sf::Color& color, sf::Texture& texture) : sf::RectangleShape(size)
@@ -33,7 +34,14 @@ public:
         this->size = size;
         velocity = 0.0;
 	}
-
+/*************************************************************
+ * Function: isFalling()                                     *
+ * Date Created: 04/14/2024                                  *
+ * Date Last Modified: 04/14/2024                            *
+ * Description: Checks if player is falling					 *
+ * Input parameters:										 *
+ * Returns: boolean											 *
+ *************************************************************/
 	bool isFalling() {
 		return (velocity < 0);
 	}
