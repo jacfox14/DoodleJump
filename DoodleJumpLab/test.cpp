@@ -90,7 +90,7 @@ bool Test::testPlatform() {
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
 	bool success = false;
-	PlatformGenerator pg(t1);
+	PlatformGenerator pg;
 	plat1.setPosition(500, 800);
 	p1.setPosition(500, 500);
 	while (mWindow.isOpen()) {
@@ -111,7 +111,7 @@ bool Test::testPlatform() {
 bool Test::testGeneratePlat() {
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
-	PlatformGenerator pg(t1);
+	PlatformGenerator pg;
 	int count = 0;
 	bool success = false;
 	while (mWindow.isOpen()) {

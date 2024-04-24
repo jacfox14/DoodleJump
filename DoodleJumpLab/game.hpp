@@ -1,55 +1,61 @@
 #pragma once
-#include "cScreen.hpp"
+#include <SFML/Graphics.hpp>
+#include "SFML/Main.hpp"
+#include "SFML/System.hpp"
 #include "player.hpp"
 #include "Events-Actions-Class.hpp"
 #include "window.hpp"
 #include <iostream>
 #include "PlatformGenerator.hpp"
-#include "menu.hpp"
 
-class Game : public cScreen {
+class Game:public cScreen{
 public:
 	virtual int Run(sf::RenderWindow& window) {
+		sf::Texture t1;
+		t1.loadFromFile("Platform.png");
 		PlatformGenerator pg;
 		Events move;
 		sf::Event e;
 		Actions a;
-		Alien alien;
-		Bullet bullet;
+		int gameScore = 0;
+
 		sf::Text text;
 		sf::Font myFont;
-		if (!myFont.loadFromFile("Whimsy.ttf")) {
-			std::cout << "Error loading font: 'Whimsy.ttf'" << std::endl;
-			return -1;
-		};
+		myFont.loadFromFile("Whimsy.ttf");
+		text.setPosition(325, 400);
+		text.setCharacterSize(50);
+		text.setFont(myFont);
+		text.setString("GAME OVER");
 
-		sf::Vector2f size(50.0, 100.0);
-		sf::Texture player_t;
+		sf::Text scoreText;
+		scoreText.setPosition(450, 500);
+		scoreText.setCharacterSize(50);
+		scoreText.setFont(myFont);
+
+
+		sf::Vector2f size(50, 50);
+		sf::Texture t;
 		sf::Vector2f pos(500, 500);
-		sf::Color color(sf::Color(255,0,0,255));
-		if(!player_t.loadFromFile("Andy.png")) {
-			std::cout << "Error loading image: 'Andy.png'" << std::endl;
-			return -1;
-		}
-		Player p1(size, pos,color, player_t);
-		p1.setTexture(&player_t);
-		color = sf::Color::Blue;
-		Menu menu;
+		sf::Color color(0, 255, 0, 0);
+		t.loadFromFile("Andy.png");
+		Player p1(size, pos, color, t);
 
-		/*sf::Texture t2;
-		if (!t2.loadFromFile("image.jpg")) {
-			std::cout << "Error loading image: 'image.jpg'" << std::endl;
-			return -1;
-		}*/
-
+		sf::Texture t2;
+		t2.loadFromFile("image.jpg");
 		sf::Sprite background;
-		sf::Texture background_t;
-		if (!background_t.loadFromFile("background.png")) {
-			std::cout << "Error loading image: 'background.png'" << std::endl;
-			return -1;
-		}
-		background.setTexture(background_t);
+		background.setTexture(t2);
 
+
+		sf::Texture tBullet;
+		sf::Vector2f posBullet(1020, 1020);
+		tBullet.loadFromFile("bullet.png");
+		Bullet bullet(posBullet, tBullet);
+
+
+		sf::Texture tAlien;
+		sf::Vector2f posAlien(1090, 1090);
+		tAlien.loadFromFile("Alien.png");
+		Alien alien(posAlien, tAlien);
 
 		bool rising = false;
 		bool jump = false;
@@ -58,17 +64,20 @@ public:
 		int movePlatCounter = 0;
 		bool shot = false;
 		bool moveShot = true;
+		bool gameOver = false;
 
 		while (window.isOpen()) {
 
 			while (window.pollEvent(e)) {
 
 				if (e.type == sf::Event::Closed) {
-					return 0;
 					window.close();
 				}
 
 			}
+
+			gameOver = a.endGame(p1);
+
 
 			move.movementInput(window, p1);
 
@@ -95,6 +104,7 @@ public:
 
 						movePlat = true;
 
+
 					}
 				}
 
@@ -105,13 +115,14 @@ public:
 
 			if (movePlat)
 			{
-				pg.MovePlatformsUp();
-				pg.CheckForNewPLatforms();
+				pg.MovePlatformsUp(alien);
+				pg.CheckForNewPLatforms(alien, t1);
 				movePlatCounter++;
 
 				if (movePlatCounter > 300) {
 					movePlat = false;
 					movePlatCounter = 0;
+					gameScore += 200;
 				}
 
 			}
@@ -138,31 +149,38 @@ public:
 				}
 
 			}
-
+			move.deathByAlien(p1, alien);
+			move.shotAlien(bullet, alien);
 			a.inBounds(window, p1);
 
 			// clear the window with black color
 			window.clear();
 
 			// draw everything here...
-			window.draw(background);
 			window.draw(p1);
-			//		window.draw(plat1);
+			window.draw(background);
 			pg.drawPlatforms(window);
 			window.draw(bullet);
 			window.draw(alien);
-			//window.draw();
 
+			if (gameOver == true) {
+				scoreText.setString(std::to_string(gameScore));
+				window.draw(text);
+				window.draw(scoreText);
+			}
 			// end the current frame
 			window.display();
-			if (p1.getPosition().y > 1000) {
-				window.clear();
-				text.setCharacterSize(50);
-				text.setString("Game Over");
-				text.setFont(myFont);
-				window.draw(text);
-			}
+
+
+
+			/*sf::Texture texture;
+			if (!texture.loadFromFile("image.jpg"))
+			{
+				std::cout << "failed to open" << std::endl;
+			}*/
+
 		}
+
 		return 0;
 	}
 };
