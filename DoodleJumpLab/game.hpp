@@ -8,6 +8,7 @@
 #include <iostream>
 #include "PlatformGenerator.hpp"
 #include "cScreen.hpp"
+#include <vector>
 
 class Game:public cScreen{
 public:
@@ -54,6 +55,20 @@ public:
 		tBullet.loadFromFile("bullet.png");
 		Bullet bullet(posBullet, tBullet);
 
+		//boxes for game over screen
+		sf::Text playAgainTxt, returnMenuTxt;
+		playAgainTxt.setString("Play again!"), returnMenuTxt.setString("Main Menu");
+		std::vector<sf::Text>textList({ playAgainTxt,returnMenuTxt });
+		for (auto& i : textList) {
+			i.setFillColor(sf::Color::White);
+			i.setCharacterSize(23);
+			i.setFont(myFont);
+		}
+		textList[0].setPosition({ 260.0f,600.0f }), textList[1].setPosition({ 460.0f,600.0f });
+		sf::RectangleShape playAgain({ 150.0f,75.0f }), returnMenu({ 150.0f,75.0f });
+		playAgain.setFillColor({ 38, 35, 36,170 }), returnMenu.setFillColor({ 38, 35, 36,170 });
+		playAgain.setPosition({ 250.0f,600.0f }), returnMenu.setPosition({ 450.0f,600.0f });
+
 
 		sf::Texture tAlien;
 		sf::Vector2f posAlien(1090, 1090);
@@ -91,7 +106,7 @@ public:
 
 			rising = pg.checkPlatformCollsion(p1);
 
-			if (rising || jump) {
+			if ((rising || jump)&&(!p1.isFalling())) {
 
 				if (riseCounter == 0) {
 					jump = true;
@@ -115,7 +130,7 @@ public:
 
 			}
 			else {
-				p1.move(0, 0.1);
+				p1.move(0, 0.125f);
 			}
 
 			if (movePlat)
@@ -137,6 +152,24 @@ public:
 				shot = true;
 				moveShot = true;
 
+			}
+			else if (gameOver) {
+				if (e.type == sf::Event::MouseButtonReleased) {
+					if (sf::Mouse::getPosition(window).x > 250.0f && sf::Mouse::getPosition(window).x < 400.0f) {
+						if (sf::Mouse::getPosition(window).y > 600.0f && sf::Mouse::getPosition(window).y < 675.0f) {
+							window.clear();
+							return 1;
+							break;
+						}
+					}
+					else if (sf::Mouse::getPosition(window).x > 450.0f && sf::Mouse::getPosition(window).x < 600.0f) {
+						if (sf::Mouse::getPosition(window).y > 600.0f && sf::Mouse::getPosition(window).y < 675.0f) {
+							return 0;
+							break;
+						}
+					}
+				}
+				
 			}
 
 			if (shot) {
@@ -169,9 +202,15 @@ public:
 			window.draw(alien);
 
 			if (gameOver == true) {
+				window.clear();
+				window.draw(background);
 				scoreText.setString(std::to_string(gameScore));
 				window.draw(text);
 				window.draw(scoreText);
+				window.draw(playAgain);
+				window.draw(returnMenu);
+				window.draw(textList[0]);
+				window.draw(textList[1]);
 			}
 			// end the current frame
 			window.display();

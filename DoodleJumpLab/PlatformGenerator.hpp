@@ -74,9 +74,9 @@ public:
 	void MovePlatformsUp(Alien& alien) {//04/19/2024 moves platforms up when the player reaches a certain point, **04/20/2024 updated to remove platforms when off screen, and add another platform to the back of the vector, thus replacing it at the top, **04/20/2024 condensed down function to simply move platforms, **04/22/2024 added aliens to platforms
 
 		for (int i = 0; i < 6; i++) {
-			mPlatforms[i].move(0, 1);
+			mPlatforms[i].move(0, 1.25f);
 		}
-		alien.move(0, 1);
+		alien.move(0, 1.25f);
 
 	}
 

@@ -26,6 +26,7 @@ int Menu::Run(sf::RenderWindow& window)
         std::cout << "Error loading file: 'Comic Sans MS.ttf'" << std::endl;
         return -1;
     }
+    //Scores is being removed for final push, not enough time to implement correctly 4/24/24
     sf::RectangleShape scores({ 150.0f,100.0f });
     scores.setPosition({ 440.0f,800.0f });
     scores.setFillColor(sf::Color(255, 255, 255, 0));
@@ -70,17 +71,18 @@ int Menu::Run(sf::RenderWindow& window)
             }
             else if (Event.type == sf::Event::MouseButtonPressed) {
                 //switch for mouse click
-                //scores box
-                //std::cout << "(" << sf::Mouse::getPosition(window).x << ", " << sf::Mouse::getPosition(window).y << ")" << std::endl;
-                if (sf::Mouse::getPosition(window).x > 440.0f && sf::Mouse::getPosition(window).x < 600.0f) {
-                    if (sf::Mouse::getPosition(window).y > 800.0f && sf::Mouse::getPosition(window).y < 900.0f) {
-                        currentSelection = __scores;
-                        //std::cout << "scores clicked" << std::endl;
-                        confirm = 1;
-                        
-                       
-                    }
-                }
+                
+                //scores is removed for the time being, not enough time to properly implement | 4/24/24
+
+                //if (sf::Mouse::getPosition(window).x > 440.0f && sf::Mouse::getPosition(window).x < 600.0f) {
+                //    if (sf::Mouse::getPosition(window).y > 800.0f && sf::Mouse::getPosition(window).y < 900.0f) {
+                //        currentSelection = __scores;
+                //        //std::cout << "scores clicked" << std::endl;
+                //        confirm = 1;
+                //        
+                //       
+                //    }
+                //}
                 //test cases box
                 if (sf::Mouse::getPosition(window).x > 600.0f && sf::Mouse::getPosition(window).x < 775.0f) {
                     if (sf::Mouse::getPosition(window).y > 760.0f && sf::Mouse::getPosition(window).y < 940.0f) {
@@ -105,6 +107,7 @@ int Menu::Run(sf::RenderWindow& window)
                     window.close();
                     return -1;
                     break;
+                //inactive
                 case __scores:
                     
                     running = false;
@@ -120,7 +123,7 @@ int Menu::Run(sf::RenderWindow& window)
             }
             window.clear();
             window.draw(background_spr);
-            window.draw(scores);
+           // window.draw(scores);
             window.draw(test_cases);
             window.draw(play);
             window.draw(exitT);
