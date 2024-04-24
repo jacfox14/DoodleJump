@@ -12,7 +12,7 @@ public:
 
 	PlatformGenerator():mPlatformCount(0) {
 		for (int i = 1; i <= 6; i++) {
-			platformTexture.loadFromFile("Platform.png");
+			platformTexture.loadFromFile("R.png");
 			sf::Vector2f size(100.0f, 20.0f);
 			sf::Color green = sf::Color(0, 255, 0 ,0);
 			sf::Vector2f position;

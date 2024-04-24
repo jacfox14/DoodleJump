@@ -17,7 +17,7 @@ public:
 	bool testAlien();
 	bool testPlatform();
 	bool testGeneratePlat();
-	void generateBase();
+	
 private:
 	sf::RenderWindow mWindow;
 	Player p1;

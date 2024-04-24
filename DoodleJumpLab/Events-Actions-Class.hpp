@@ -1,4 +1,3 @@
-
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Player.hpp"
@@ -29,7 +28,7 @@ public:
 	void shotAlien(Bullet& bull, Alien& al) {
 
 		if (bull.getGlobalBounds().intersects(al.getGlobalBounds())) {
-			al.move(1000, 0);
+			al.move(2000, 0);
 		}
 
 	}
@@ -37,7 +36,7 @@ public:
 	void deathByAlien(Player& p, Alien& al) {
 
 		if (p.getGlobalBounds().intersects(al.getGlobalBounds())) {
-			p.move(0,1000);
+			p.move(0,2000);
 		}
 
 	}

@@ -19,23 +19,7 @@ int main() {
 	std::vector<cScreen*> Screens;
 	int screen = 0;
 	
-	//PlatformGenerator pg;
-	//Events move;
-	//sf::Event e;
-	//Actions a;
-	//Alien alien;
-	//Bullet bullet;
-	//sf::Text text;
-	//sf::Font myFont;
-	//myFont.loadFromFile("Whimsy.ttf");
-
-	//sf::Vector2f size(50.0, 100.0);
-	//sf::Texture t;
-	//sf::Vector2f pos(500, 500);
-	//sf::Color color(sf::Color::Red);
-	//t.loadFromFile("Andy.png");
-	//Player p1(size, pos, color, t);
-	//color = sf::Color::Blue;
+	
 	Menu menu;
 	Game game;
 	TestCasesMenu tcMenu;

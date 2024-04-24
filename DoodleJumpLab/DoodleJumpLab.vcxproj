@@ -150,7 +150,6 @@
     <ClInclude Include="cScreen.hpp" />
     <ClInclude Include="Events-Actions-Class.hpp" />
     <ClInclude Include="game.hpp" />
-    <ClInclude Include="gravity.hpp" />
     <ClInclude Include="menu.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="PlatformGenerator.hpp" />
