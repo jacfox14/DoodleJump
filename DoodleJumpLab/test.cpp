@@ -12,75 +12,14 @@
 
 #include "test.hpp"
 
-/*************************************************************
- * Function: testGeneratePlat()                              *
- * Date Created: 04/22/2024                                  *
- * Date Last Modified: 04/23/2024                            *
- * Description: test function for generating new platform,	 *
- *				utilizies generateNew function from			 *
- *				PlatformGenerator.hpp						 *
- * Input parameters:									     *
- * Returns:													 *
+ /*************************************************************
+ * Function: testMovement
+ * Date Created: 04/22/2024
+ * Date Last Modified: 04/24/2024
+ * Description: tests the movement of the character
+ * Input parameters: void
+ * Returns:	void
  *************************************************************/
-void Test::testGeneratePlat() {
-	/* Opens window for test function to run in */
-	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
-
-	/* Centers camera */
-	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
-	camera.setCenter(center);
-	mWindow.setView(camera);
-
-	/* Initialize text to display for generating new platform */
-	sf::Text text;
-	sf::Font myFont;
-	myFont.loadFromFile("Whimsy.ttf");
-	text.setPosition(325, 400);
-	text.setCharacterSize(50);
-	text.setFont(myFont);
-	text.setString("PRESS SPACE");
-
-	/* Initialize PlatformGenerator object for generating new platform collision function */
-	sf::Texture t1;
-	t1.loadFromFile("Platform.png");
-	PlatformGenerator pg(t1);
-
-	/* Loop for running test */
-	while (mWindow.isOpen()) {
-
-		/* Draw instructions to make new platform */
-		mWindow.draw(text);
-
-		/* If statement to generate new platform */
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-
-			/* Generate new platform using generateNew function */
-			Platform plat = pg.generateNew(t1);
-
-			/* Draws new platform */
-			mWindow.draw(plat);
-
-			/* Set words to text to instruction to exit test function */
-			text.setString("PRESS ESCAPE");
-
-			/* Draw text */
-			mWindow.draw(text);
-
-			/* If statement to leave test function */
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-				mWindow.close();
-			}
-
-			/* Display next frame*/
-			mWindow.display();
-		}
-	}
-
-	/* Clear screen to go back to main menu */
-	mWindow.clear();
-}
-
 void testMovement() {
 	/* Opens window for test function to run in */
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
@@ -123,14 +62,14 @@ void testMovement() {
 	/* Clear window to return to menu */
 	mWindow.clear();
 }
-	/*************************************************************
-	* Function: testFalling
-	* Date Created: 04/22/2024
-	* Date Last Modified: 04/24/2024
-	* Description: tests the falling movement
-	* Input parameters: void
-	* Returns:	void
-	*************************************************************/
+/*************************************************************
+* Function: testFalling
+* Date Created: 04/22/2024
+* Date Last Modified: 04/24/2024
+* Description: tests the falling movement
+* Input parameters: void
+* Returns:	void
+*************************************************************/
 	void Test::testFalling() {
 		/* Opens window for test function to run in */
 		sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
