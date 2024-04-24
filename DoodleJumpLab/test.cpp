@@ -38,14 +38,14 @@ void Test::testMovement() {
 
 		/* Function for moving player around */
 		e.movementInput(mWindow, p1);
-
-		/* Displaying Next Frame */
-		mWindow.display();
-
+	
 		/* If statement to leave test function */
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			mWindow.close();
 		}
+
+		/* Displaying Next Frame */
+		mWindow.display();
 	}
 
 	/* Clear window to return to menu */
