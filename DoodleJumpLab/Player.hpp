@@ -1,3 +1,10 @@
+/*
+Project Section: PLayer class
+Purpose: Initializing player objects for user to control
+Date Started: 04/14/2024
+Updates: 04/15/2024-04/23/2024
+Referenced: main.cpp, test.hpp, Events-Actions-Class.hpp, player.hpp
+*/
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "SFML/Main.hpp"
@@ -7,6 +14,16 @@
 class Player : public sf::RectangleShape{
 
 public:
+	/*************************************************************
+ * Function: Player(                                  *
+ * Date Created:                                             *
+ * Date Last Modified:                                       *
+ * Description:                                              *
+ * Input parameters:                                         *
+ * Returns:                                                  *
+ * Preconditions:                                            *
+ * Postconditions:                                           *
+ *************************************************************/
 
 	Player(const sf::Vector2f& size, sf::Vector2f& pos, const sf::Color& color, sf::Texture& texture) : sf::RectangleShape(size)
 	{

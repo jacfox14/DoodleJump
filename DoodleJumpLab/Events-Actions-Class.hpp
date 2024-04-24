@@ -2,7 +2,7 @@
 Project Section: Events and Actions class
 Purpose: Focuses on general functionality of the game, prioritizes keeping player in screen, updated, and moving around; works on detection of certain special events happening, like player death by alien or falling, when to end game, and shooting bullets
 Date Started: 04/14/2024
-Updates: 04/15/2024-04/22/2024
+Updates: 04/15/2024-04/23/2024
 Referenced: main.cpp, test.hpp
 */
 #include "SFML/Graphics.hpp"

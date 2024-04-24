@@ -2,8 +2,8 @@
 Project Section: Platform Generator class
 Purpose: Creating a class to generate and keep track of platforms in a vector, allowing for dynamic resizing and easy addition and subtraction of platforms when they need to disappear/move
 Date Started: 04/18/2024
-Updates: 04/18/2024-04/22/2024
-Referenced: main.cpp, test.hpp, Events-Actions-Class.hpp
+Updates: 04/18/2024-04/23/2024
+Referenced: main.cpp, test.hpp
 */
 #pragma once
 #include "Platform.hpp"
