@@ -18,8 +18,4 @@ public:
 	bool testGeneratePlat();
 	
 private:
-	sf::RenderWindow mWindow;
-	Player p1;
-	Platform plat1;
-	Alien a1;
 };

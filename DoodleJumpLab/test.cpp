@@ -1,5 +1,7 @@
 #include "test.hpp"
 
+
+
 bool Test::testMovement() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
@@ -14,12 +16,12 @@ bool Test::testMovement() {
 	Player p1(size, pos, color, t);
 	bool success = false;
 	Events e;
-	/*sf::Vector2f pos = p1.getPosition();*/
+	sf::Vector2f testPos = p1.getPosition();
 	while (mWindow.isOpen()) {
 		mWindow.draw(p1);
 		e.movementInput(mWindow, p1);
 		mWindow.display();
-		if (p1.getPosition() != pos) {
+		if (p1.getPosition() != testPos) {
 			return true;
 		}
 	}
