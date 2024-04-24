@@ -13,8 +13,8 @@ public :
  * Date Created: 04/19/2024                                  *
  * Date Last Modified: 04/19/2024                            *
  * Description: Basic Constructor for Bullet class		     *
- * Input parameters: sf::Vector2f& pos,						 *
- *					 const sf::Texture& text                 *
+ * Input parameters: reference to sf::Vector2f, reference to *
+ *					 sf::Texture							 *
  *************************************************************/
 	Bullet(sf::Vector2f& pos, const sf::Texture& text) : sf::CircleShape(10)
 	{

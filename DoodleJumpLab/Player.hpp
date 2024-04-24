@@ -20,10 +20,8 @@ public:
  * Date Last Modified: 04/22/2024                            *
  * Description: Constructor for player class,				 *
  *				sets position, size, texture and velocity	 *
- * Input parameters: const sf::Vector2f& size,				 *
- *					 sf::Vector2f& pos,					     *
- *					 const sf::Color& color,				 *
- *					 sf::Texture& texture                    *
+ * Input parameters: reference to two sf::Vector2f, reference*
+ *					 to sf::Color, reference to sf:Texture   *
  *************************************************************/
 
 	Player(const sf::Vector2f& size, sf::Vector2f& pos, const sf::Color& color, sf::Texture& texture) : sf::RectangleShape(size)
