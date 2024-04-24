@@ -22,14 +22,16 @@ public:
 		sf::Text text;
 		sf::Font myFont;
 		myFont.loadFromFile("Whimsy.ttf");
-		text.setPosition(325, 400);
+		text.setPosition(250, 400);
 		text.setCharacterSize(50);
+		text.setFillColor(sf::Color::Black);
 		text.setFont(myFont);
 		text.setString("GAME OVER");
 
 		sf::Text scoreText;
-		scoreText.setPosition(450, 500);
+		scoreText.setPosition(350, 500);
 		scoreText.setCharacterSize(50);
+		scoreText.setFillColor(sf::Color::Black);
 		scoreText.setFont(myFont);
 
 
@@ -41,7 +43,7 @@ public:
 		Player p1(size, pos, color, t);
 
 		sf::Texture t2;
-		t2.loadFromFile("image.jpg");
+		t2.loadFromFile("background.png");
 		sf::Sprite background;
 		background.setTexture(t2);
 
@@ -157,8 +159,8 @@ public:
 			window.clear();
 
 			// draw everything here...
-			window.draw(p1);
 			window.draw(background);
+			window.draw(p1);
 			pg.drawPlatforms(window);
 			window.draw(bullet);
 			window.draw(alien);
