@@ -1,3 +1,15 @@
+/*
+Name of Project: Doodle Jump
+PA 9
+Names of Members: Jacob Fox, Ben Metzger, Travis Takushi
+Date Began: 04/14/2024
+Language: SFML/C++
+Class: CPTS122
+
+*/
+
+
+
 #include <SFML/Graphics.hpp>
 #include "SFML/Main.hpp"
 #include "SFML/System.hpp"
@@ -6,6 +18,7 @@
 #include "window.hpp"
 #include <iostream>
 #include "PlatformGenerator.hpp"
+
 
 int main(void) {
 	sf::Texture t1;
