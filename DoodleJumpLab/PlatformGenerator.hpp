@@ -13,8 +13,7 @@ public:
 	PlatformGenerator():mPlatformCount(0) {
 		for (int i = 1; i <= 6; i++) {
 			sf::Vector2f size(100.0f, 20.0f);
-			sf::Texture t1;
-			t1.loadFromFile("Platform.png");
+			platformTexture.loadFromFile("Platform.png");
 			sf::Color green = sf::Color::Green;
 			sf::Vector2f position;
 			if(i==1){
@@ -28,7 +27,7 @@ public:
 					position = sf::Vector2f((rand() % 400)+400 + 1, 1000 - ((rand() % 250) + 150 * i));
 				}
 			}
-			Platform* newP = new Platform(size, position, green, t1);
+			Platform* newP = new Platform(size, position, green, platformTexture);
 			mPlatforms.push_back(*newP);
 			mPlatformCount++;
 		}
@@ -44,12 +43,10 @@ public:
 	}
 
 	Platform& generateNew() {
-		sf::Texture t1;
-		t1.loadFromFile("Platform.png");
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
 		sf::Color green = sf::Color::Green;
-		return *(new Platform(size, position, green, t1));
+		return *(new Platform(size, position, green, platformTexture));
 	}
 
 	bool checkPlatformCollsion(Player& p1) {
@@ -103,4 +100,5 @@ private:
 	int mPlatformCount;
 	vector<Platform> mPlatforms;
 	Alien alien;
+	sf::Texture platformTexture;
 };
