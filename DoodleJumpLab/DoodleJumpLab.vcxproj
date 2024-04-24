@@ -140,18 +140,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.hpp" />
     <ClInclude Include="bullet.hpp" />
+    <ClInclude Include="cScreen.hpp" />
     <ClInclude Include="Events-Actions-Class.hpp" />
-    <ClInclude Include="gravity.hpp" />
+    <ClInclude Include="game.hpp" />
+    <ClInclude Include="menu.hpp" />
     <ClInclude Include="Platform.hpp" />
+    <ClInclude Include="PlatformGenerator.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="test.hpp" />
     <ClInclude Include="window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Downloads\andy-jump-menu.png" />
+    <Image Include="Alien.png" />
+    <Image Include="Andy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Comic Sans MS.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

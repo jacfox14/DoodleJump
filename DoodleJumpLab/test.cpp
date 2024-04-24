@@ -1,5 +1,7 @@
 #include "test.hpp"
 
+
+
 bool Test::testMovement() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
@@ -14,12 +16,12 @@ bool Test::testMovement() {
 	Player p1(size, pos, color, t);
 	bool success = false;
 	Events e;
-	sf::Vector2f pos = p1.getPosition();
+	sf::Vector2f testPos = p1.getPosition();
 	while (mWindow.isOpen()) {
 		mWindow.draw(p1);
 		e.movementInput(mWindow, p1);
 		mWindow.display();
-		if (p1.getPosition() != pos) {
+		if (p1.getPosition() != testPos) {
 			return true;
 		}
 	}
@@ -106,13 +108,13 @@ bool Test::testPlatform() {
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 	sf::Texture t1;
-	t1.loadFromFile("Platform.png");
-	sf::Vector2f size(100.0f, 20.0f);
+	t1.loadFromFile("R.png");
+	sf::Vector2f sizePlat(100.0f, 20.0f);
 	sf::Vector2f position((rand() % 800), 0.0f);
 	sf::Color green = sf::Color::Green;
-	Platform plat1(size, position, green, t1);
+	Platform plat1(sizePlat, position, green, t1);
 	bool success = false;
-	PlatformGenerator pg(t1);
+	PlatformGenerator pg;
 	plat1.setPosition(500, 800);
 	p1.setPosition(500, 500);
 	while (mWindow.isOpen()) {
@@ -138,7 +140,7 @@ bool Test::testGeneratePlat() {
 	mWindow.setView(camera);
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
-	PlatformGenerator pg(t1);
+	PlatformGenerator pg;
 	int count = 0;
 	bool success = false;
 	while (mWindow.isOpen()) {

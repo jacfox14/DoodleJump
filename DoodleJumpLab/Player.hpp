@@ -41,7 +41,7 @@ public:
 
 private:
 	double velocity;
-   sf::Texture texture;
+    sf::Texture texture;
     sf::Vector2f size;
     sf::Vector2f pos;
 };

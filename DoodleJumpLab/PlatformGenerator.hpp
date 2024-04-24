@@ -17,8 +17,9 @@ class PlatformGenerator {
 public:
 
 
-	PlatformGenerator(sf::Texture& t1) :mPlatformCount(0) {//04/18/2024 constructor spawns vector of platforms to ensure a constant count of platforms **04/22/2024 updated arguments to take in reference to texture to ensure that texture doesn't get deleted once out of function
-		for (int i = 1; i <= 6; i++) {//04/18/2024 loop to spawn all platforms
+	PlatformGenerator():mPlatformCount(0) {
+		for (int i = 1; i <= 6; i++) {
+			platformTexture.loadFromFile("R.png");
 			sf::Vector2f size(100.0f, 20.0f);
 			sf::Color green = sf::Color(0, 255, 0, 0);
 			sf::Vector2f position;
@@ -33,7 +34,7 @@ public:
 					position = sf::Vector2f((rand() % 400) + 400 + 1, 1000 - ((rand() % 250) + 150 * i));
 				}
 			}
-			Platform* newP = new Platform(size, position, green, t1);//04/18/2024 creates new platform with changed position then pushes to back of vector
+			Platform* newP = new Platform(size, position, green, platformTexture);
 			mPlatforms.push_back(*newP);
 			mPlatformCount++;
 		}
@@ -52,7 +53,7 @@ public:
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
 		sf::Color green = sf::Color::Green;
-		return *(new Platform(size, position, green, t1));
+		return *(new Platform(size, position, green, platformTexture));
 	}
 
 	bool checkPlatformCollsion(Player& p1) {//04/19/2024 Checks if the player collides with the platform, returns true if they touch
@@ -110,4 +111,5 @@ public:
 private:
 	int mPlatformCount;
 	vector<Platform> mPlatforms;
+	sf::Texture platformTexture;
 };

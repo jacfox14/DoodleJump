@@ -1,10 +1,3 @@
-/*
-Project Section: Events and Actions class
-Purpose: Focuses on general functionality of the game, prioritizes keeping player in screen, updated, and moving around; works on detection of certain special events happening, like player death by alien or falling, when to end game, and shooting bullets
-Date Started: 04/14/2024
-Updates: 04/15/2024-04/23/2024
-Referenced: main.cpp, test.hpp
-*/
 #include "SFML/Graphics.hpp"
 #include "Player.hpp"
 #include "bullet.hpp"
@@ -15,7 +8,7 @@ private:
 public:
 	void movementInput(sf::RenderWindow& window, Player& obj1) {//user presses left and right arrows, changes direction of where the player is going
 		
-		int x = 0, y = 0;
+		int x = 0, y = 0, yPrime = 0;
 		int direction = 1;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {//04/14/2024 function detects A key being pressed, changes direction to left, player moves to left
@@ -34,7 +27,7 @@ public:
 	void shotAlien(Bullet& bull, Alien& al) {//04/22/2024 when bullet collides with alien, moves alien off screen and destroys object
 
 		if (bull.getGlobalBounds().intersects(al.getGlobalBounds())) {
-			al.move(1000, 0);
+			al.move(2000, 0);
 		}
 
 	}
