@@ -35,7 +35,7 @@ public:
 	void deathByAlien(Player& p, Alien& al) {
 
 		if (p.getGlobalBounds().intersects(al.getGlobalBounds())) {
-			p.move(0,1000);
+			p.move(0,2000);
 		}
 
 	}
