@@ -1,6 +1,5 @@
-<<<<<<<<< Temporary merge branch 1
 #pragma once
-=========
+
 /*
 Name of Project: Doodle Jump
 PA 9
@@ -11,9 +10,6 @@ Class: CPTS122
 
 */
 
-
-
->>>>>>>>> Temporary merge branch 2
 #include <SFML/Graphics.hpp>
 #include "SFML/Main.hpp"
 #include "SFML/System.hpp"

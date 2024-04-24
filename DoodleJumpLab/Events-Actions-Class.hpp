@@ -118,9 +118,11 @@ public:
  * Returns:	bool 
  *************************************************************/
 	bool endGame(Player& player1) {
+		bool success = false;
 		if (player1.getPosition().y >= 1000) {
-			return true;
+			success = true;
 		}
+		return success;
 	}
 	/*************************************************************
 	 * Function: inBounds()
