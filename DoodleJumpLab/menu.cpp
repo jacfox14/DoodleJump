@@ -9,7 +9,7 @@ int Menu::Run(sf::RenderWindow& window)
 {
     sf::Event Event;
     running = true;
-
+   
     sf::Texture background_texture;
     sf::Sprite background_spr;
     //tracker for selecting 2 of the text options or the 2 boxes in the bottom right
@@ -127,7 +127,7 @@ int Menu::Run(sf::RenderWindow& window)
             window.display();
         }
         if (!running) {
-            std::cout << "breaking out of loop" << std::endl;
+            //sstd::cout << "breaking out of loop" << std::endl;
             break;
         }
     }

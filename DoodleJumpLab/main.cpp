@@ -9,6 +9,7 @@
 #include "PlatformGenerator.hpp"
 #include "menu.hpp"
 #include "game.hpp"
+#include "testCasesMenu.hpp"
 
 int main() {
 
@@ -37,6 +38,7 @@ int main() {
 	//color = sf::Color::Blue;
 	Menu menu;
 	Game game;
+	TestCasesMenu tcMenu;
 
 	Screens.push_back(&menu);
 	Screens.push_back(&game);

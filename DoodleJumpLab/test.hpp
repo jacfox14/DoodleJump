@@ -1,3 +1,4 @@
+#pragma once
 #include "Events-Actions-Class.hpp"
 #include "Alien.hpp"
 #include "PlatformGenerator.hpp"
