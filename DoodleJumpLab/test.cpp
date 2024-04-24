@@ -1,6 +1,27 @@
+/*******************************************************************************
+ * Programmers: Jacob Fox, Ben Metzger, Travis Takushi
+ * Class: CptS 122
+ * Programming Assignment: PA9
+ * Date:4/24/2024
+ *
+ * Description: This program plays a version of the hit mobile game Doodle Jump,
+ * we call it Andy Jump!
+ *
+ * Project section: Test; Contains a class that holds our 5 test cases
+ ******************************************************************************/
+
 #include "test.hpp"
 
-bool Test::testMovement() {
+/*************************************************************
+* Function: testMovement
+* Date Created: 04/22/2024
+* Date Last Modified: 04/24/2024
+* Description: tests the movement of the character
+* Input parameters: void
+* Returns:	void
+*************************************************************/
+void Test::testMovement() {
+
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -20,12 +41,20 @@ bool Test::testMovement() {
 		e.movementInput(mWindow, p1);
 		mWindow.display();
 		if (p1.getPosition() != pos) {
-			return true;
+			//return true;
 		}
 	}
 	mWindow.clear();
 }
 
+/*************************************************************
+* Function: testFalling
+* Date Created: 04/22/2024
+* Date Last Modified: 04/24/2024
+* Description: tests the falling movement
+* Input parameters: void
+* Returns:	void
+*************************************************************/
 void Test::testFalling() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
@@ -49,6 +78,14 @@ void Test::testFalling() {
 	mWindow.clear();
 }
 
+/*************************************************************
+* Function: testAlien
+* Date Created: 04/22/2024
+* Date Last Modified: 04/24/2024
+* Description: tests the generation of an alien
+* Input parameters: void
+* Returns:	void
+*************************************************************/
 void Test::testAlien() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
@@ -82,7 +119,15 @@ void Test::testAlien() {
 	}
 }
 
-bool Test::testPlatform() {
+/*************************************************************
+* Function: testPlatform
+* Date Created: 04/22/2024
+* Date Last Modified: 04/24/2024
+* Description: tests the generation of a single platform
+* Input parameters: void
+* Returns:	void
+*************************************************************/
+void Test::testPlatform() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -113,12 +158,20 @@ bool Test::testPlatform() {
 		pg.checkPlatformCollsion(p1);
 		mWindow.display();
 		if (pg.checkPlatformCollsion(p1) == true) {
-			return true;
+			//return true;
 		}
 	}
-	return success;
+	//return success;
 }
 
+/*************************************************************
+ * Function: testGeneratePlat
+ * Date Created: 04/22/2024
+ * Date Last Modified: 04/24/2024
+ * Description: tests the generation of multiple platforms
+ * Input parameters: void
+ * Returns:	void
+ *************************************************************/
 void Test::testGeneratePlat() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;

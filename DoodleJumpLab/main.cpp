@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Programmers: Jacob Fox, Ben Metzger, Travis Takushi
+ * Class: CptS 122
+ * Programming Assignment: PA9
+ * Date:4/24/2024
+ *
+ * Description: This program plays a version of the hit mobile game Doodle Jump,
+ * we call it Andy Jump!
+ *
+ * Project section: Main; Runs the main function
+ ******************************************************************************/
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "SFML/Main.hpp"
@@ -10,6 +22,14 @@
 #include "menu.hpp"
 #include "game.hpp"
 
+ /*************************************************************
+  * Function: main
+  * Date Created: 04/22/2024
+  * Date Last Modified: 04/24/2024
+  * Description: runs the main function
+  * Input parameters: void
+  * returns: int
+  *************************************************************/
 int main() {
 
 	

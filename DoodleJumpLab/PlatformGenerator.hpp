@@ -1,10 +1,16 @@
-/*
-Project Section: Platform Generator class
-Purpose: Creating a class to generate and keep track of platforms in a vector, allowing for dynamic resizing and easy addition and subtraction of platforms when they need to disappear/move
-Date Started: 04/18/2024
-Updates: 04/18/2024-04/23/2024
-Referenced: main.cpp, test.hpp
-*/
+/*******************************************************************************
+ * Programmers: Jacob Fox, Ben Metzger, Travis Takushi
+ * Class: CptS 122
+ * Programming Assignment: PA9
+ * Date:4/24/2024
+ *
+ * Description: This program plays a version of the hit mobile game Doodle Jump,
+ * we call it Andy Jump!
+ *
+ * Project section: Platform Generator; This file contains the class 
+ * PlatformGenerator which generates 6 random platforms to the screen and 
+ * creates more as needed.
+ ******************************************************************************/
 #pragma once
 #include "Platform.hpp"
 #include "Alien.hpp"
@@ -16,7 +22,14 @@ using std::vector;
 class PlatformGenerator {
 public:
 
-
+/*************************************************************
+ * Function: PlatformGenerator
+ * Date Created: 04/18/2024
+ * Date Last Modified: 04/24/2024
+ * Description: default constructor
+ * Input parameters: void
+ * Returns:	void
+ *************************************************************/
 	PlatformGenerator():mPlatformCount(0) {
 		for (int i = 1; i <= 6; i++) {
 			platformTexture.loadFromFile("R.png");
@@ -42,6 +55,15 @@ public:
 
 
 	}
+
+/*************************************************************
+* Function: drawPlatforms
+* Date Created: 04/18/2024
+* Date Last Modified: 04/20/2024
+* Description: draws platforms
+* Input parameters: sf::RenderWindow& window
+* Returns:	void
+*************************************************************/
 	void drawPlatforms(sf::RenderWindow& window) {//04/18/2024 iterates through vector and draws all of them to load in platforms into game
 		for (int i = 0; i < mPlatformCount; i++) {
 			window.draw(mPlatforms[i]);
@@ -49,6 +71,14 @@ public:
 
 	}
 
+/*************************************************************
+* Function: generateNew
+* Date Created: 04/18/2024
+* Date Last Modified: 04/20/2024
+* Description: generates a new platform
+* Input parameters: sf::Texture& t1
+* Returns:	Platform& (a new platform)
+*************************************************************/
 	Platform& generateNew(sf::Texture& t1) {//04/18/2024 General generator for platforms, returns reference to created platform
 		sf::Vector2f size(100.0f, 20.0f);
 		sf::Vector2f position((rand() % 800), 0.0f);
@@ -56,6 +86,14 @@ public:
 		return *(new Platform(size, position, green, platformTexture));
 	}
 
+/*************************************************************
+* Function: checkPlatformCollision
+* Date Created: 04/19/2024
+* Date Last Modified: 04/20/2024
+* Description: checks to see if a player collides with a platform
+* Input parameters: void
+* Returns:	bool collides
+*************************************************************/
 	bool checkPlatformCollsion(Player& p1) {//04/19/2024 Checks if the player collides with the platform, returns true if they touch
 
 		bool collides = false;
@@ -71,6 +109,15 @@ public:
 		return collides;
 	}
 
+
+/*************************************************************
+* Function: MovePlatformsUp
+* Date Created: 04/19/2024
+* Date Last Modified: 04/20/2024
+* Description: moves platforms up the screen
+* Input parameters: Alien& alien
+* Returns: void
+*************************************************************/
 	void MovePlatformsUp(Alien& alien) {//04/19/2024 moves platforms up when the player reaches a certain point, **04/20/2024 updated to remove platforms when off screen, and add another platform to the back of the vector, thus replacing it at the top, **04/20/2024 condensed down function to simply move platforms, **04/22/2024 added aliens to platforms
 
 		for (int i = 0; i < 6; i++) {
@@ -80,8 +127,15 @@ public:
 
 	}
 
-
-	void CheckForNewPLatforms(Alien& alien, sf::Texture& t1) {//04/20/2024 checks if platforms are below a certain point then deletes them, adds new platform at back of vector, **04/22/2024 added aliens to platforms
+/*************************************************************
+* Function: void CheckForNewPlatforms
+* Date Created: 04/19/2024
+* Date Last Modified: 04/20/2024
+* Description: moves platforms up the screen
+* Input parameters: Alien& alien, sf::Texture& t1
+* Returns: void
+*************************************************************/
+	void CheckForNewPLatforms(Alien& alien, sf::Texture& t1) {//04/19/2024 checks if platforms are below a certain point then deletes them, adds new platform at back of vector, **04/22/2024 added aliens to platforms
 
 		for (int i = 0; i < 6; i++) {
 
@@ -101,7 +155,15 @@ public:
 
 	}
 
-	bool isEmpty() {//04/22/2024 added to check if there were no platforms on screen for test cases
+/*************************************************************
+* Function: void isEmpty
+* Date Created: 04/19/2024
+* Date Last Modified: 04/20/2024
+* Description: checks to see if the platform count is empty
+* Input parameters: void
+* Returns: bool
+*************************************************************/
+	bool isEmpty() {//04/19/2024 added to check if there were no platforms on screen for test cases
 		if (this->mPlatformCount = 0) {
 			return true;
 		}
