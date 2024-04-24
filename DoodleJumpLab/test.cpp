@@ -263,13 +263,13 @@ void Test::testPlatform() {
 			camera.setCenter(center);
 			mWindow.setView(camera);
 
-			/* Initializes player for user to move */
-			sf::Vector2f size(50, 50);
-			sf::Texture t;
-			sf::Vector2f pos(500, 500);
-			sf::Color color(0, 255, 0, 0);
-			t.loadFromFile("Andy.png");
-			Player p1(size, pos, color, t);
+	/* Initializes player for user to move */
+	sf::Vector2f size(50, 50);
+	sf::Texture t;
+	sf::Vector2f pos(500, 500);
+	sf::Color color(0, 255, 0, 0);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
 
 	/* Initialize text to display for end screen */
 	sf::Text text;
@@ -337,9 +337,11 @@ void Test::testPlatform() {
 				}
 
 		/* Draws player */
-		mWindow.draw(p1);
+		
 
 		mWindow.draw(background);
+		
+		mWindow.draw(p1);
 
 		mWindow.draw(text1);
 
@@ -403,9 +405,10 @@ void Test::testPlatform() {
 				mWindow.close();
 			}
 
+			mWindow.draw(background);
 
-					/* Draws new platform */
-					mWindow.draw(plat);
+		/* Draws new platform */
+		mWindow.draw(plat);
 
 		pg.drawPlatforms(mWindow);
 
