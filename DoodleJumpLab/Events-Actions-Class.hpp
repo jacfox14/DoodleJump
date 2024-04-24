@@ -2,37 +2,68 @@
 #include "Player.hpp"
 #include "bullet.hpp"
 #include "Alien.hpp"
-class Events//04/14/2024 Events class created to handle user input, as well as detection of interactions between objects
+class Events
 {
 private:
 public:
-	void movementInput(sf::RenderWindow& window, Player& obj1) {//user presses left and right arrows, changes direction of where the player is going
+/*************************************************************
+ * Function: movementInput()                                 *
+ * Date Created: 04/14/2024                                  *
+ * Date Last Modified: 04/20/2024                            *
+ * Description: checks if keyboard inputs are given by user	 *
+ *				moves player								 *
+ * Input parameters: refernece to RenderWindow, reference to *
+ *					 Player									 *
+ * Returns:													 *
+ *************************************************************/
+	void movementInput(sf::RenderWindow& window, Player& obj1) {
 		
 		int x = 0, y = 0, yPrime = 0;
 		int direction = 1;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {//04/14/2024 function detects A key being pressed, changes direction to left, player moves to left
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			direction = -1;
 			obj1.move(0.3 * direction, 0);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//04/14/2024 function detects D key being pressed, changes direction to right, player moves to right
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			obj1.move(0.3 * direction, 0);
 		}
 	}
-
-	void shoot(Bullet& obj1) {//user presses space bar, sprite is changed to face upward, bullet sprite is loaded and moves upwards	
+/*************************************************************
+ * Function: shoot()										 *
+ * Date Created: 04/14/2024                                  *
+ * Date Last Modified: 04/20/2024                            *
+ * Description: moves Bullet type object up screen           *
+ * Input parameters: reference to Bullet					 *
+ * Returns:													 *
+ *************************************************************/
+	void shoot(Bullet& obj1) {	
 			obj1.move(0, -0.8);
 	}
-
-	void shotAlien(Bullet& bull, Alien& al) {//04/22/2024 when bullet collides with alien, moves alien off screen and destroys object
+/*************************************************************
+ * Function: shotAlien()									 *
+ * Date Created: 04/22/2024                                  *
+ * Date Last Modified: 04/22/2024                            *
+ * Description: detects if bullet and alien intersect        *
+ * Input parameters: refernece to Bullet, reference to Alien *
+ * Returns:													 *
+ *************************************************************/
+	void shotAlien(Bullet& bull, Alien& al) {
 
 		if (bull.getGlobalBounds().intersects(al.getGlobalBounds())) {
 			al.move(2000, 0);
 		}
 
 	}
-
-	void deathByAlien(Player& p, Alien& al) {//04/22/2024 when player collides with alien, moves player into deathbox off-screen, shows game over message
+/*************************************************************
+ * Function: deathByAlien()									 *
+ * Date Created: 04/22/2024                                  *
+ * Date Last Modified: 04/22/2024                            *
+ * Description: detects if bullet and alien intersect        *
+ * Input parameters: refernece to Bullet, reference to Alien *
+ * Returns:													 *
+ *************************************************************/
+	void deathByAlien(Player& p, Alien& al) {
 
 		if (p.getGlobalBounds().intersects(al.getGlobalBounds())) {
 			p.move(0,2000);
@@ -42,24 +73,24 @@ public:
 	
 };
 
-class Actions//04/14/2024 Actions class created as a general wrapper for "rules" of game, making sure player is inbound, objects can collide with one another, and checking for if the game should be terminated
+class Actions
 {
 private:
 public:
-	void inBounds(sf::RenderWindow& window, Player& obj) {//04/14/2024 checks players position and puts them on the other side of the screen if they move out of bounds to simulate a looping screen
-		if (obj.getPosition().x > 1000) {//04/14/2024 checks to see if player moves past right side of screen, puts player on very left if moved too far
+	void inBounds(sf::RenderWindow& window, Player& obj) {
+		if (obj.getPosition().x > 1000) {
 			obj.setPosition(0, obj.getPosition().y);
 		}
-		else if (obj.getPosition().x < 0) {//04/14/2024 checks to see if player moves past left side of screen, puts player on very right if moved too far
+		else if (obj.getPosition().x < 0) {
 			obj.setPosition(1000, obj.getPosition().y);
 		}
 	}
-	bool endGame(Player& player1) {//04/14/2024 detects whether or not player is off screen to end game **04/22/2024 updated to be a bool to function in main, returns true if player is below the screen
+	bool endGame(Player& player1) {
 		if (player1.getPosition().y >= 1000) {
 			return true;
 		}
 	}
-	bool collisionDetection(sf::RenderWindow& window, sf::RectangleShape& obj1, sf::CircleShape& obj2) {//04/14/2024 checks to see if two objects are colliding, returns true if they are intersecting
+	bool collisionDetection(sf::RenderWindow& window, sf::RectangleShape& obj1, sf::CircleShape& obj2) {
 		bool success = false;
 		if (obj1.getGlobalBounds().intersects(obj2.getGlobalBounds())) {
 			success = true;

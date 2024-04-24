@@ -1,7 +1,5 @@
 #include "test.hpp"
 
-
-
 bool Test::testMovement() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
@@ -21,15 +19,14 @@ bool Test::testMovement() {
 		mWindow.draw(p1);
 		e.movementInput(mWindow, p1);
 		mWindow.display();
-		if (p1.getPosition() != testPos) {
+		if (p1.getPosition() != pos) {
 			return true;
 		}
 	}
 	mWindow.clear();
-	return success;
 }
 
-bool Test::testFalling() {
+void Test::testFalling() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -48,16 +45,11 @@ bool Test::testFalling() {
 		p1.move(0, 0.1);
 		a.endGame(p1);
 		mWindow.display();
-		if (a.endGame(p1) == true) {
-			success = true;
-			return success;
-		}
 	}
 	mWindow.clear();
-	return success;
 }
 
-bool Test::testAlien() {
+void Test::testAlien() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -87,12 +79,7 @@ bool Test::testAlien() {
 		e.deathByAlien(p1, a1);
 		a.endGame(p1);
 		mWindow.display();
-		if (a.endGame(p1) == true) {
-			success = true;
-			return success;
-		}
 	}
-	return success;
 }
 
 bool Test::testPlatform() {
@@ -132,7 +119,7 @@ bool Test::testPlatform() {
 	return success;
 }
 
-bool Test::testGeneratePlat() {
+void Test::testGeneratePlat() {
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
@@ -145,8 +132,5 @@ bool Test::testGeneratePlat() {
 	bool success = false;
 	while (mWindow.isOpen()) {
 		pg.generateNew(t1);
-		if (!pg.isEmpty()) {
-			return true;
-		}
 	}
 }

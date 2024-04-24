@@ -7,11 +7,17 @@ Updates: 04/19/2024-04/23/2024
 Referenced: main.cpp, test.hpp, Events-Actions-Class.hpp
 */
 #include "SFML/Graphics.hpp"
-
 class Bullet : public sf::CircleShape{
 public :
-	
-	Bullet(sf::Vector2f& pos, const sf::Texture& text) : sf::CircleShape(10)//04/19/2024 Constructor sets general position and texture
+/*************************************************************
+ * Function: Bullet ()                                       *
+ * Date Created: 04/19/2024                                  *
+ * Date Last Modified: 04/19/2024                            *
+ * Description: Basic Constructor for Bullet class		     *
+ * Input parameters: reference to sf::Vector2f, reference to *
+ *					 sf::Texture							 *
+ *************************************************************/
+	Bullet(sf::Vector2f& pos, const sf::Texture& text) : sf::CircleShape(10)
 	{
 		this->setPosition(pos);
 		//this->setFillColor(color);

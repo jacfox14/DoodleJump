@@ -11,11 +11,10 @@
 class Test : public Window
 {
 public:
-	bool testMovement();
-	bool testFalling();
-	bool testAlien();
-	bool testPlatform();
-	bool testGeneratePlat();
-	
+	void testMovement();
+	void testFalling();
+	void testAlien();
+	void testPlatform();
+	void testGeneratePlat();
 private:
 };
