@@ -11,6 +11,7 @@
  ******************************************************************************/
 
 #include "test.hpp"
+#include <iostream>
 
 /*************************************************************
 * Function: testMovement
@@ -24,12 +25,12 @@ void Test::testMovement() {
 
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
+	sf::Vector2f center(500.0f, 500.0f);
 	camera.setCenter(center);
 	mWindow.setView(camera);
 	sf::Vector2f size(50, 50);
 	sf::Texture t;
-	sf::Vector2f pos(500, 500);
+	sf::Vector2f pos(500.0f, 500);
 	sf::Color color(0, 255, 0, 0);
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
@@ -133,9 +134,9 @@ void Test::testPlatform() {
 	sf::Vector2f center(500.0, 500.0);
 	camera.setCenter(center);
 	mWindow.setView(camera);
-	sf::Vector2f size(50, 50);
 	sf::Texture t;
 	sf::Vector2f pos(500, 500);
+	sf::Vector2f size(50.0f,50.0f);
 	sf::Color color(0, 255, 0, 0);
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);

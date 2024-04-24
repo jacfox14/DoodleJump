@@ -19,6 +19,7 @@
 #include "window.hpp"
 #include <iostream>
 #include "PlatformGenerator.hpp"
+#include "cScreen.hpp"
 
 class Game:public cScreen{
 public:
@@ -94,7 +95,9 @@ public:
 			while (window.pollEvent(e)) {
 
 				if (e.type == sf::Event::Closed) {
+					return 0;
 					window.close();
+					
 				}
 
 			}

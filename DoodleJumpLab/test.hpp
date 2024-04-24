@@ -20,7 +20,7 @@
 #include "PlatformGenerator.hpp"
 #include "Alien.hpp"
 
-class Test : public Window
+class Test
 {
 public:
 
@@ -69,5 +69,4 @@ public:
  * Returns:	void
  *************************************************************/
 	void testGeneratePlat();
-private:
 };

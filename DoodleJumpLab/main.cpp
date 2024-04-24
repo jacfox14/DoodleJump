@@ -1,16 +1,19 @@
-/*******************************************************************************
- * Programmers: Jacob Fox, Ben Metzger, Travis Takushi
- * Class: CptS 122
- * Programming Assignment: PA9
- * Date:4/24/2024
- *
- * Description: This program plays a version of the hit mobile game Doodle Jump,
- * we call it Andy Jump!
- *
- * Project section: Main; Runs the main function
- ******************************************************************************/
-
+<<<<<<<<< Temporary merge branch 1
 #pragma once
+=========
+/*
+Name of Project: Doodle Jump
+PA 9
+Names of Members: Jacob Fox, Ben Metzger, Travis Takushi
+Date Began: 04/14/2024
+Language: SFML/C++
+Class: CPTS122
+
+*/
+
+
+
+>>>>>>>>> Temporary merge branch 2
 #include <SFML/Graphics.hpp>
 #include "SFML/Main.hpp"
 #include "SFML/System.hpp"
@@ -21,6 +24,7 @@
 #include "PlatformGenerator.hpp"
 #include "menu.hpp"
 #include "game.hpp"
+#include "testCasesMenu.hpp"
 
  /*************************************************************
   * Function: main
@@ -36,32 +40,18 @@ int main() {
 	Window w;
 	sf::RenderWindow& window = w.getWindow();
 	std::vector<cScreen*> Screens;
-	int screen = 0;
+	int select = 0;
 	
-	//PlatformGenerator pg;
-	//Events move;
-	//sf::Event e;
-	//Actions a;
-	//Alien alien;
-	//Bullet bullet;
-	//sf::Text text;
-	//sf::Font myFont;
-	//myFont.loadFromFile("Whimsy.ttf");
-
-	//sf::Vector2f size(50.0, 100.0);
-	//sf::Texture t;
-	//sf::Vector2f pos(500, 500);
-	//sf::Color color(sf::Color::Red);
-	//t.loadFromFile("Andy.png");
-	//Player p1(size, pos, color, t);
-	//color = sf::Color::Blue;
+	
 	Menu menu;
 	Game game;
+	TestCasesMenu tcMenu;
 
 	Screens.push_back(&menu);
 	Screens.push_back(&game);
-	while (screen >= 0) {
-		screen = Screens[screen]->Run(window);
+	Screens.push_back(&tcMenu);
+	while (select >= 0) {
+		select = Screens[select]->Run(window);
 	}
 	
 	return 0;
