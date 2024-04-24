@@ -1,36 +1,17 @@
 #include "test.hpp"
 
-void Test::generateBase() {
-	this->mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
+bool Test::testMovement() {
+	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
 	camera.setCenter(center);
-	this->mWindow.setView(camera);
+	mWindow.setView(camera);
 	sf::Vector2f size(50, 50);
 	sf::Texture t;
 	sf::Vector2f pos(500, 500);
 	sf::Color color(0, 255, 0, 0);
 	t.loadFromFile("Andy.png");
-	sf::Texture tAlien;
-	sf::Vector2f posAlien(1090, 1090);
-	tAlien.loadFromFile("Alien.png");
-	sf::Texture t1;
-	t1.loadFromFile("Platform.png");
-	sf::Vector2f size1(100.0f, 20.0f);
-	sf::Vector2f position((rand() % 800), 0.0f);
-	sf::Color green = sf::Color::Green;
-	this->p1.setSize(size);
-	this->p1.setFillColor(color);
-	this->p1.setTexture(&t);
-	this->p1.setPosition(pos);
-	this->a1.setPosition(posAlien);
-	this->a1.setTexture(&tAlien);
-	this->plat1.setTexture(&t1);
-	this->plat1.setSize(size1);
-	this->plat1.setPosition(position);
-}
-
-bool Test::testMovement() {
+	Player p1(size, pos, color, t);
 	bool success = false;
 	Events e;
 	sf::Vector2f pos = p1.getPosition();
@@ -47,11 +28,22 @@ bool Test::testMovement() {
 }
 
 bool Test::testFalling() {
+	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
+	sf::View camera;
+	sf::Vector2f center(500.0, 500.0);
+	camera.setCenter(center);
+	mWindow.setView(camera);
+	sf::Vector2f size(50, 50);
+	sf::Texture t;
+	sf::Vector2f pos(500, 500);
+	sf::Color color(0, 255, 0, 0);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
 	bool success = false;
 	Actions a;
 	while (mWindow.isOpen()) {
 		mWindow.draw(p1);
-		p1.move(0,0.1);
+		p1.move(0, 0.1);
 		a.endGame(p1);
 		mWindow.display();
 		if (a.endGame(p1) == true) {
@@ -64,6 +56,21 @@ bool Test::testFalling() {
 }
 
 bool Test::testAlien() {
+	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
+	sf::View camera;
+	sf::Vector2f center(500.0, 500.0);
+	camera.setCenter(center);
+	mWindow.setView(camera);
+	sf::Vector2f size(50, 50);
+	sf::Texture t;
+	sf::Vector2f pos(500, 500);
+	sf::Color color(0, 255, 0, 0);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
+	sf::Texture tAlien;
+	sf::Vector2f posAlien(1090, 1090);
+	tAlien.loadFromFile("Alien.png");
+	Alien a1(posAlien, tAlien);
 	bool success = false;
 	Events e;
 	Actions a;
@@ -87,10 +94,25 @@ bool Test::testAlien() {
 }
 
 bool Test::testPlatform() {
+	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
+	sf::View camera;
+	sf::Vector2f center(500.0, 500.0);
+	camera.setCenter(center);
+	mWindow.setView(camera);
+	sf::Vector2f size(50, 50);
+	sf::Texture t;
+	sf::Vector2f pos(500, 500);
+	sf::Color color(0, 255, 0, 0);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
+	sf::Vector2f size(100.0f, 20.0f);
+	sf::Vector2f position((rand() % 800), 0.0f);
+	sf::Color green = sf::Color::Green;
+	Platform plat1(size, position, green, t1);
 	bool success = false;
-	PlatformGenerator pg;
+	PlatformGenerator pg(t1);
 	plat1.setPosition(500, 800);
 	p1.setPosition(500, 500);
 	while (mWindow.isOpen()) {
@@ -109,9 +131,14 @@ bool Test::testPlatform() {
 }
 
 bool Test::testGeneratePlat() {
+	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
+	sf::View camera;
+	sf::Vector2f center(500.0, 500.0);
+	camera.setCenter(center);
+	mWindow.setView(camera);
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
-	PlatformGenerator pg;
+	PlatformGenerator pg(t1);
 	int count = 0;
 	bool success = false;
 	while (mWindow.isOpen()) {
