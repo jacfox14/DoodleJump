@@ -1,17 +1,36 @@
 #include "test.hpp"
 
-bool Test::testMovement() {
-	mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
+void Test::generateBase() {
+	this->mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
 	sf::View camera;
 	sf::Vector2f center(500.0, 500.0);
 	camera.setCenter(center);
-	mWindow.setView(camera);
+	this->mWindow.setView(camera);
 	sf::Vector2f size(50, 50);
 	sf::Texture t;
 	sf::Vector2f pos(500, 500);
 	sf::Color color(0, 255, 0, 0);
 	t.loadFromFile("Andy.png");
-	Player p1(size, pos, color, t);
+	sf::Texture tAlien;
+	sf::Vector2f posAlien(1090, 1090);
+	tAlien.loadFromFile("Alien.png");
+	sf::Texture t1;
+	t1.loadFromFile("Platform.png");
+	sf::Vector2f size1(100.0f, 20.0f);
+	sf::Vector2f position((rand() % 800), 0.0f);
+	sf::Color green = sf::Color::Green;
+	this->p1.setSize(size);
+	this->p1.setFillColor(color);
+	this->p1.setTexture(&t);
+	this->p1.setPosition(pos);
+	this->a1.setPosition(posAlien);
+	this->a1.setTexture(&tAlien);
+	this->plat1.setTexture(&t1);
+	this->plat1.setSize(size1);
+	this->plat1.setPosition(position);
+}
+
+bool Test::testMovement() {
 	bool success = false;
 	Events e;
 	sf::Vector2f pos = p1.getPosition();
@@ -28,17 +47,6 @@ bool Test::testMovement() {
 }
 
 bool Test::testFalling() {
-	mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
-	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
-	camera.setCenter(center);
-	mWindow.setView(camera);
-	sf::Vector2f size(50, 50);
-	sf::Texture t;
-	sf::Vector2f pos(500, 500);
-	sf::Color color(0, 255, 0, 0);
-	t.loadFromFile("Andy.png");
-	Player p1(size, pos, color, t);
 	bool success = false;
 	Actions a;
 	while (mWindow.isOpen()) {
@@ -56,21 +64,6 @@ bool Test::testFalling() {
 }
 
 bool Test::testAlien() {
-	mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
-	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
-	camera.setCenter(center);
-	mWindow.setView(camera);
-	sf::Vector2f size(50, 50);
-	sf::Texture t;
-	sf::Vector2f pos(500, 500);
-	sf::Color color(0, 255, 0, 0);
-	t.loadFromFile("Andy.png");
-	Player p1(size, pos, color, t);
-	sf::Texture tAlien;
-	sf::Vector2f posAlien(1090, 1090);
-	tAlien.loadFromFile("Alien.png");
-	Alien a1(posAlien, tAlien);
 	bool success = false;
 	Events e;
 	Actions a;
@@ -94,23 +87,8 @@ bool Test::testAlien() {
 }
 
 bool Test::testPlatform() {
-	mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
-	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
-	camera.setCenter(center);
-	mWindow.setView(camera);
-	sf::Vector2f size(50, 50);
-	sf::Texture t;
-	sf::Vector2f pos(500, 500);
-	sf::Color color(0, 255, 0, 0);
-	t.loadFromFile("Andy.png");
-	Player p1(size, pos, color, t);
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
-	sf::Vector2f size(100.0f, 20.0f);
-	sf::Vector2f position((rand() % 800), 0.0f);
-	sf::Color green = sf::Color::Green;
-	Platform plat1(size, position, green, t1);
 	bool success = false;
 	PlatformGenerator pg(t1);
 	plat1.setPosition(500, 800);
@@ -131,11 +109,6 @@ bool Test::testPlatform() {
 }
 
 bool Test::testGeneratePlat() {
-	mWindow.create(sf::VideoMode(800, 1000), "Doodle jump!");
-	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
-	camera.setCenter(center);
-	mWindow.setView(camera);
 	sf::Texture t1;
 	t1.loadFromFile("Platform.png");
 	PlatformGenerator pg(t1);
