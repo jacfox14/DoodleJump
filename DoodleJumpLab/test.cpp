@@ -39,6 +39,18 @@ void testMovement() {
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
+
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
 	/* Initialize Events object for movement function */
 	Events e;
 
@@ -46,7 +58,7 @@ void testMovement() {
 	while (mWindow.isOpen()) {
 
 		/* Drawing player */
-		mWindow.draw(p1);
+		
 
 		/* Function for moving player around */
 		e.movementInput(mWindow, p1);
@@ -55,6 +67,11 @@ void testMovement() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			mWindow.close();
 		}
+
+		mWindow.clear();
+		mWindow.draw(background);
+		mWindow.draw(text1);
+		mWindow.draw(p1);
 
 		/* Displaying Next Frame */
 		mWindow.display();
@@ -86,6 +103,11 @@ void testMovement() {
 		t.loadFromFile("Andy.png");
 		Player p1(size, pos, color, t);
 
+		sf::Texture t2;
+		t2.loadFromFile("background.png");
+		sf::Sprite background;
+		background.setTexture(t2);
+
 	sf::Event e1;
 
 	/* Initialize text to display for end screen */
@@ -98,14 +120,20 @@ void testMovement() {
 	text.setFillColor(sf::Color().Black);
 	text.setString(" ");
 
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
+	bool endGame = false;
+
 		/* Initialize actions object for end game checking function */
 		Actions a;
 
 		/* Loop for running test */
 		while (mWindow.isOpen()) {
-
-			/* Drawing player */
-			mWindow.draw(p1);
 
 			/* Moving player down to simulate gravity */
 			p1.move(0, 0.1);
@@ -114,7 +142,7 @@ void testMovement() {
 			a.endGame(p1);
 
 			/* Checks if end game returns true, meaning player is "dead" */
-			if (a.endGame(p1) == true) {
+			if (endGame == true) {
 
 			/* Draw end game screen */
 			text.setString("END GAME");
@@ -167,6 +195,11 @@ void testMovement() {
 		t.loadFromFile("Andy.png");
 		Player p1(size, pos, color, t);
 
+		sf::Texture t2;
+		t2.loadFromFile("background.png");
+		sf::Sprite background;
+		background.setTexture(t2);
+
 		/* Initializes Alien for player to collide into and check if player dies or not from colliding with alien */
 		sf::Texture tAlien;
 		sf::Vector2f posAlien(1090, 1090);
@@ -182,6 +215,15 @@ void testMovement() {
 	text.setFillColor(sf::Color().Black);
 	text.setFont(myFont);
 	text.setString(" ");
+
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
+	bool endGame = false;
 
 		/* Initialize Events object for movement function */
 		Events e;
@@ -203,20 +245,14 @@ void testMovement() {
 				p1.move(0, -0.1);
 			}
 
-			/* Draw player */
-			mWindow.draw(p1);
-
-			/* Draw Alien */
-			mWindow.draw(a1);
-
 			/* Function to move player down into death plane if colliding with alien */
 			e.deathByAlien(p1, a1);
 
 			/* Uses bottom of window to decide if player is "dead" returns true if above y = 1000*/
-			a.endGame(p1);
+			endGame = a.endGame(p1);
 
 			/* Checks if end game returns true, meaning player is "dead" */
-			if (a.endGame(p1) == true) {
+			if (endGame == true) {
 
 			/* Draw end game screen */
 			text.setString("END GAME");
@@ -264,13 +300,13 @@ void Test::testPlatform() {
 			camera.setCenter(center);
 			mWindow.setView(camera);
 
-			/* Initializes player for user to move */
-			sf::Vector2f size(50, 50);
-			sf::Texture t;
-			sf::Vector2f pos(500, 500);
-			sf::Color color(0, 255, 0, 0);
-			t.loadFromFile("Andy.png");
-			Player p1(size, pos, color, t);
+	/* Initializes player for user to move */
+	sf::Vector2f size(50, 50);
+	sf::Texture t;
+	sf::Vector2f pos(500, 500);
+	sf::Color color(0, 255, 0, 0);
+	t.loadFromFile("Andy.png");
+	Player p1(size, pos, color, t);
 
 	/* Initialize text to display for end screen */
 	sf::Text text;
@@ -305,17 +341,12 @@ void Test::testPlatform() {
 	bool collision = false;
 
 			/* Initialize PlatformGenerator object for checking platform collision function */
-			PlatformGenerator pg(t1);
+			PlatformGenerator pg;
 
 	sf::Event e1;
 
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
-
-				/* Draws player */
-				mWindow.draw(p1);
-				/* Draws platform */
-				mWindow.draw(plat1);
 
 				/* Moves player down to platform if not intersecting */
 				if (!p1.getGlobalBounds().intersects(plat1.getGlobalBounds())) {
@@ -323,7 +354,7 @@ void Test::testPlatform() {
 				}
 
 				/* Platform collision function returns true if player and platform collide */
-				pg.checkPlatformCollsion(p1);
+				collision = pg.checkPlatformCollsion(p1);
 
 		/* If statement for if platform and player collide */
 		if (collision == true) {
@@ -338,9 +369,11 @@ void Test::testPlatform() {
 				}
 
 		/* Draws player */
-		mWindow.draw(p1);
+		
 
 		mWindow.draw(background);
+		
+		mWindow.draw(p1);
 
 		mWindow.draw(text1);
 
@@ -395,18 +428,16 @@ void Test::testPlatform() {
 			/* Loop for running test */
 			while (mWindow.isOpen()) {
 
-				/* Draw instructions to make new platform */
-				mWindow.draw(text);
-
 		/* If statement to generate new platform */
 			/* If statement to leave test function */
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 				mWindow.close();
 			}
 
+			mWindow.draw(background);
 
-					/* Draws new platform */
-					mWindow.draw(plat);
+		/* Draws new platform */
+		mWindow.draw(plat);
 
 		pg.drawPlatforms(mWindow);
 
