@@ -20,13 +20,24 @@
  * Input parameters: void
  * Returns:	void
  *************************************************************/
+void Test::testMovement() {
+ /*************************************************************
+ * Function: testMovement
+ * Date Created: 04/22/2024
+ * Date Last Modified: 04/24/2024
+ * Description: tests the movement of the character
+ * Input parameters: void
+ * Returns:	void
+ *************************************************************/
 void testMovement() {
+	/* Opens window for test function to run in */
 	/* Opens window for test function to run in */
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
 
 	/* Centers camera */
 	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
+	sf::Vector2f center(400.0f, 500.0f);
+	camera.reset(sf::FloatRect(0, 0, 800.0f, 1000.0f));
 	camera.setCenter(center);
 	mWindow.setView(camera);
 
@@ -38,14 +49,36 @@ void testMovement() {
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
+
+	sf::Text text1;
+	sf::Font myFont;
+	myFont.loadFromFile("Whimsy.ttf");
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
 	/* Initialize Events object for movement function */
 	Events e;
+
+	sf::Event e1;
 
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
 
-		/* Drawing player */
-		mWindow.draw(p1);
+		while (mWindow.pollEvent(e1)) {
+			if (e1.type == sf::Event::Closed) {
+				mWindow.close();
+
+			}
+		}
+
+		mWindow.clear();
 
 		/* Function for moving player around */
 		e.movementInput(mWindow, p1);
@@ -54,6 +87,13 @@ void testMovement() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			mWindow.close();
 		}
+
+		mWindow.draw(background);
+
+		mWindow.draw(text1);
+
+		/* Drawing player */
+		mWindow.draw(p1);
 
 		/* Displaying Next Frame */
 		mWindow.display();
@@ -76,7 +116,8 @@ void Test::testFalling() {
 
 	/* Centers camera */
 	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
+	sf::Vector2f center(400.0f, 500.0f);
+	camera.reset(sf::FloatRect(0, 0, 800.0f, 1000.0f));
 	camera.setCenter(center);
 	mWindow.setView(camera);
 
@@ -88,14 +129,32 @@ void Test::testFalling() {
 	t.loadFromFile("Andy.png");
 	Player p1(size, pos, color, t);
 
+	sf::Event e1;
+
 	/* Initialize text to display for end screen */
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
-	text.setPosition(325, 400);
+	text.setPosition(250, 400);
 	text.setCharacterSize(50);
 	text.setFont(myFont);
+	text.setFillColor(sf::Color().Black);
 	text.setString("GAME OVER");
+
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
+
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
+
+	bool endGame = false;
 
 	/* Initialize actions object for end game checking function */
 	Actions a;
@@ -103,17 +162,23 @@ void Test::testFalling() {
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
 
-		/* Drawing player */
-		mWindow.draw(p1);
+		while (mWindow.pollEvent(e1)) {
+			if (e1.type == sf::Event::Closed) {
+				mWindow.close();
+
+			}
+		}
+
+		mWindow.clear();
 
 		/* Moving player down to simulate gravity */
 		p1.move(0, 0.1);
 
 		/* Uses bottom of window to decide if player is "dead" returns true if above y = 1000*/
-		a.endGame(p1);
+		endGame = a.endGame(p1);
 
 		/* Checks if end game returns true, meaning player is "dead" */
-		if (a.endGame(p1) == true) {
+		if (endGame == true) {
 
 			/* Draw end game screen */
 			mWindow.draw(text);
@@ -125,6 +190,13 @@ void Test::testFalling() {
 			/* Closes window to end loop */
 			mWindow.close();
 		}
+
+		mWindow.draw(background);
+
+		mWindow.draw(text1);
+
+		/* Drawing player */
+		mWindow.draw(p1);
 
 		/* Displaying Next Frame */
 		mWindow.display();
@@ -148,7 +220,8 @@ void Test::testAlien() {
 
 	/* Centers camera */
 	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
+	sf::Vector2f center(400.0f, 500.0f);
+	camera.reset(sf::FloatRect(0, 0, 800.0f, 1000.0f));
 	camera.setCenter(center);
 	mWindow.setView(camera);
 
@@ -172,11 +245,29 @@ void Test::testAlien() {
 	myFont.loadFromFile("Whimsy.ttf");
 	text.setPosition(325, 400);
 	text.setCharacterSize(50);
+	text.setFillColor(sf::Color().Black);
 	text.setFont(myFont);
 	text.setString("GAME OVER");
 
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
+
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
+
 	/* Initialize Events object for movement function */
 	Events e;
+
+	sf::Event e1;
+
+	bool endGame = false;
 
 	/* Initialize actions object for end game checking function */
 	Actions a;
@@ -190,25 +281,27 @@ void Test::testAlien() {
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
 
+		while (mWindow.pollEvent(e1)) {
+			if (e1.type == sf::Event::Closed) {
+				mWindow.close();
+			}
+		}
+
+		mWindow.clear();
+
 		/* When player and alien are not colliding, move the player towards the alien */
 		if (!p1.getGlobalBounds().intersects(a1.getGlobalBounds())) {
 			p1.move(0, -0.1);
 		}
 
-		/* Draw player */
-		mWindow.draw(p1);
-
-		/* Draw Alien */
-		mWindow.draw(a1);
-
 		/* Function to move player down into death plane if colliding with alien */
 		e.deathByAlien(p1, a1);
 
 		/* Uses bottom of window to decide if player is "dead" returns true if above y = 1000*/
-		a.endGame(p1);
+		endGame = a.endGame(p1);
 
 		/* Checks if end game returns true, meaning player is "dead" */
-		if (a.endGame(p1) == true) {
+		if (endGame == true) {
 
 			/* Draw end game screen */
 			mWindow.draw(text);
@@ -220,6 +313,16 @@ void Test::testAlien() {
 			/* Closes window and ends loop*/
 			mWindow.close();
 		}
+
+		mWindow.draw(background);
+
+		mWindow.draw(text1);
+
+		/* Draw player */
+		mWindow.draw(p1);
+
+		/* Draw Alien */
+		mWindow.draw(a1);
 
 		/* Displaying Next Frame */
 		mWindow.display();
@@ -241,7 +344,8 @@ void Test::testPlatform() {
 
 	/* Centers camera */
 	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
+	sf::Vector2f center(400.0f, 500.0f);
+	camera.reset(sf::FloatRect(0, 0, 800.0f, 1000.0f));
 	camera.setCenter(center);
 	mWindow.setView(camera);
 
@@ -257,35 +361,56 @@ void Test::testPlatform() {
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
-	text.setPosition(325, 400);
+	text.setPosition(250, 400);
 	text.setCharacterSize(50);
 	text.setFont(myFont);
-	text.setString("GAME OVER");
+	text.setFillColor(sf::Color().Black);
+	text.setString("COLLIDED");
 
 	/* Initialize platform */
 	sf::Texture t1;
 	t1.loadFromFile("R.png");
-	sf::Vector2f size(100.0f, 20.0f);
+	sf::Vector2f size1(100.0f, 20.0f);
 	sf::Vector2f position((rand() % 800), 0.0f);
 	sf::Color green = sf::Color::Green;
-	Platform plat1(size, position, green, t1);
+	Platform plat1(size1, position, green, t1);
+
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
+
+	bool collision = false;
 
 	/* Initialize PlatformGenerator object for checking platform collision function */
 	PlatformGenerator pg;
 
+	sf::Event e1;
+
 	/* Sets platform origin */
-	plat1.setPosition(500, 800);
+	plat1.setPosition(225, 800);
 
 	/* Sets player origin */
-	p1.setPosition(500, 500);
+	p1.setPosition(225, 225);
 
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
 
-		/* Draws player */
-		mWindow.draw(p1);
-		/* Draws platform */
-		mWindow.draw(plat1);
+		while (mWindow.pollEvent(e1)) {
+			if (e1.type == sf::Event::Closed) {
+				mWindow.close();
+
+			}
+		}
+
+		mWindow.clear();
 
 		/* Moves player down to platform if not intersecting */
 		if (!p1.getGlobalBounds().intersects(plat1.getGlobalBounds())) {
@@ -293,12 +418,10 @@ void Test::testPlatform() {
 		}
 
 		/* Platform collision function returns true if player and platform collide */
-		pg.checkPlatformCollsion(p1);
+		collision = pg.checkPlatformCollsion(p1);
 
 		/* If statement for if platform and player collide */
-		if (pg.checkPlatformCollsion(p1) == true) {
-
-			/* Displays instructions to exit test function */
+		if (collision == true) {
 			mWindow.draw(text);
 		}
 
@@ -308,6 +431,17 @@ void Test::testPlatform() {
 			/* Window closes and loop ends */
 			mWindow.close();
 		}
+
+		/* Draws player */
+		
+
+		mWindow.draw(background);
+		mWindow.draw(p1);
+
+		mWindow.draw(text1);
+
+		/* Draws platform */
+		mWindow.draw(plat1);
 
 		/* Display next frame */
 		mWindow.display();
@@ -331,53 +465,79 @@ void Test::testGeneratePlat() {
 
 	/* Centers camera */
 	sf::View camera;
-	sf::Vector2f center(500.0, 500.0);
+	sf::Vector2f center(400.0f, 500.0f);
+	camera.reset(sf::FloatRect(0, 0, 800.0f, 1000.0f));
 	camera.setCenter(center);
 	mWindow.setView(camera);
+
+	sf::Event e1;
 
 	/* Initialize text to display for generating new platform */
 	sf::Text text;
 	sf::Font myFont;
 	myFont.loadFromFile("Whimsy.ttf");
-	text.setPosition(325, 400);
+	text.setPosition(250, 400);
 	text.setCharacterSize(50);
 	text.setFont(myFont);
-	text.setString("PRESS SPACE");
+	text.setFillColor(sf::Color().Black);
+	text.setString("PRESS SPACE TO SPAWN PLATFORM");
+
+	sf::Text text1;
+	text1.setPosition(225, 800);
+	text1.setCharacterSize(20);
+	text1.setFont(myFont);
+	text1.setFillColor(sf::Color().Black);
+	text1.setString("PRESS ESCAPE TO LEAVE TEST");
+
+	sf::Texture t2;
+	t2.loadFromFile("background.png");
+	sf::Sprite background;
+	background.setTexture(t2);
 
 	/* Initialize PlatformGenerator object for generating new platform collision function */
 	sf::Texture t1;
 	t1.loadFromFile("R.png");
 	PlatformGenerator pg;
 
+
+	vector<Platform> plat;
+
 	/* Loop for running test */
 	while (mWindow.isOpen()) {
 
+		while (mWindow.pollEvent(e1)) {
+			if (e1.type == sf::Event::Closed) {
+				mWindow.close();
+
+			}
+		}
+
+		mWindow.clear();
 		/* Draw instructions to make new platform */
-		mWindow.draw(text);
 
 		/* If statement to generate new platform */
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		
 
-			/* Generate new platform using generateNew function */
-			Platform plat = pg.generateNew(t1);
-
-			/* Draws new platform */
-			mWindow.draw(plat);
-
-			/* Set words to text to instruction to exit test function */
-			text.setString("PRESS ESCAPE");
-
-			/* Draw text */
-			mWindow.draw(text);
-
-			/* If statement to leave test function */
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-				mWindow.close();
-			}
-
-			/* Display next frame*/
-			mWindow.display();
+		/* Generate new platform using generateNew function */
+		plat.push_back(pg.generateNew(t1));
+		/* If statement to leave test function */
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			mWindow.close();
 		}
+
+		
+
+		mWindow.draw(background);
+
+		mWindow.draw(text1);
+
+		/* Draw text */
+	//	mWindow.draw(text);
+
+		pg.drawPlatforms(mWindow);
+
+		/* Display next frame*/
+		mWindow.display();
 	}
 
 	/* Clear screen to go back to main menu */

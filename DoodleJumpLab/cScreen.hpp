@@ -12,7 +12,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "window.hpp"
-
+//abstract class for all menu functions, all menu functions will overwrite Run which will then be called in the main event loop
 class cScreen {
 public:
 

@@ -31,7 +31,7 @@ public:
  *************************************************************/
 	void movementInput(sf::RenderWindow& window, Player& obj1) {
 		
-		int x = 0, y = 0, yPrime = 0;
+		int x = 0, y = 0;
 		int direction = 1;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -39,7 +39,7 @@ public:
 			obj1.move(0.3 * direction, 0);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-			obj1.move(0.3 * direction, 0);
+			obj1.move(0.3f * direction, 0);
 		}
 	}
 /*************************************************************
