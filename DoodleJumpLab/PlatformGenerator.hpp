@@ -28,10 +28,10 @@ public:
 			}
 			else {
 				if (i % 2 == 0) {//04/18/2024 every other platform spawns at a different height from the previous to ensure that platforms don't overlap
-					position = sf::Vector2f((rand() % 400) + 1.0f, 1000 - ((rand() % 250) + 150.0f * i));
+					position = sf::Vector2f((rand() % 400) + 1.0f, 1000 - ((rand() % 250) + 100.0f * i));
 				}
 				else {
-					position = sf::Vector2f((rand() % 400) + 400 + 1, 1000 - ((rand() % 250) + 150 * i));
+					position = sf::Vector2f((rand() % 400) + 400 + 1, 1000 - ((rand() % 250) + 150.0f * i));
 				}
 			}
 			Platform* newP = new Platform(size, position, green, platformTexture);

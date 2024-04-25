@@ -20,7 +20,7 @@ public:
 	 * Input parameters: reference to sf::Vector2f, reference	 *
 	 *					 to sf::Texture,						 *
 	 *************************************************************/
-	Alien(sf::Vector2f& pos, const sf::Texture& texture) : sf::CircleShape(100), hp(0)
+	Alien(sf::Vector2f& pos, const sf::Texture& texture) : sf::CircleShape(50), hp(0)
 	{
 		this->setPosition(pos);
 		this->setTexture(&texture);
