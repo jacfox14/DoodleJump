@@ -29,7 +29,6 @@ void Test::testMovement() {
  * Input parameters: void
  * Returns:	void
  *************************************************************/
-void testMovement() {
 	/* Opens window for test function to run in */
 	/* Opens window for test function to run in */
 	sf::RenderWindow mWindow(sf::VideoMode(800, 1000), "");
